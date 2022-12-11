@@ -25,7 +25,7 @@ export const App = observer(() => {
 
   return (
     <>
-      {isAuthenticated ? (
+      {
         <NavigationContainer>
           <Drawer.Navigator
             screenOptions={{
@@ -34,19 +34,20 @@ export const App = observer(() => {
             initialRouteName="Dashboard">
             <Drawer.Screen name="Dashboard" component={Dashboard} />
             <Drawer.Screen name="Cart" component={Cart} />
+            <Stack.Screen name="login" component={Login} />
+            <Stack.Screen name="signup" component={Signup} />
           </Drawer.Navigator>
-        </NavigationContainer>
-      ) : (
-        <NavigationContainer>
-          <Stack.Navigator
+      
+        
+          {/* <Stack.Navigator
             screenOptions={{
               headerShown: false,
             }}>
             <Stack.Screen name="login" component={Login} />
             <Stack.Screen name="signup" component={Signup} />
-          </Stack.Navigator>
+          </Stack.Navigator> */}
         </NavigationContainer>
-      )}
+      }
     </>
   );
 });

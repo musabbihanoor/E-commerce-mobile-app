@@ -14,7 +14,25 @@ class Auth {
     });
   }
 
-  login = () => {
+  login = async () => {
+    // try {
+    //   const response = await axios.get(
+    //     "abcdbasdb",
+    //     {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     },
+    //   );
+    //   if (response.status === 200) {
+        
+    //     this.state.isAuthenticated = true;
+    //     this.state.user=response.data
+        
+    //   }
+    // } catch (error) {
+    //   Errored(error);
+    // }
     this.state.isAuthenticated = true;
   };
 

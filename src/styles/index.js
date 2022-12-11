@@ -67,6 +67,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 10,
   },
+  cat: {
+    height: 50,
+    width: '100%',
+    borderRadius: 10,
+    justifyContent: 'flex-end',
+    marginBottom: 10,
+  },
 });
 
 export default styles;

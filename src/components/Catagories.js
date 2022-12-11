@@ -1,44 +1,46 @@
 import React, { useState } from 'react';
-
 import {View, ImageBackground, Text, ScrollView, Pressable} from 'react-native';
 
 import styles from '../styles';
 import Svg, {Path} from 'react-native-svg';
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
-import {ProductStore} from '../store/product';
+import {CatStore} from '../store/catagories';
 
 
 
-const Products = () => {
+
+const Products = ({id,navigation}) => {
   const [prod, setprod] = useState([{"product_name":"huzaifa"}]);
-  
+  console.log(id)
 
 const getProd = async () => {
     try {
-     const response = await fetch('http://10.0.2.2:8000/getAllProd');
+     const response = await fetch(`http://10.0.2.2:8000/getProdbyCat/${id}/`);
+    //  console.log(response);
      const json = await response.json();
-     console.log(json)
+     
      setprod(json)
    } catch (error) {
      console.error(error);
    } finally {
    }
 }
+
   getProd()
   return (
     <ScrollView style={{margin: 30}}>
       {prod.map(x => (
-        <Item key={x.product_id} item={x} />
+        <Item2 key={x.product_id} item={x} navigation={navigation} />
       ))}
     </ScrollView>
   );
 };
 
-export default Products;
 
-const Item = ({item}) => {
+const Item2 = ({item,navigation}) => {
   const [count, setCount] = useState(0);
-
+  const [data_,setData_]= useState([{}])
   return (
     <ImageBackground
       source={{
@@ -86,7 +88,9 @@ const Item = ({item}) => {
           </Svg>
         </Pressable>
       </View>
-
+      <Pressable onPress={() =>{ 
+        navigation.navigate('Cart')
+        }}>
       <View
         style={{
           margin: 10,
@@ -110,6 +114,49 @@ const Item = ({item}) => {
         </View>
         <Text style={{color: 'black'}}>{item.product_description }</Text>
       </View>
+      </Pressable>
     </ImageBackground>
   );
 };
+
+const Catagories = ({navigation}) => {
+  const {
+    state: {catagories},
+  } = CatStore;
+
+  const [cat, setCat] = useState(1);
+  return (
+    <ScrollView>
+      
+      <ScrollView horizontal={true} style={{margin: 30}}>
+      {catagories.map(x => (
+         
+         <Pressable key={x.product_category_id} onPress={() => setCat(x.product_category_id)}>
+         <View
+           style={{
+             margin: 10,
+           }}>
+           <View
+             style={{
+               flexDirection: 'row',
+               alignItems: 'flex-end',
+             }}>
+             <Text style={{color: 'black', fontSize: 24}}>{x.product_category_name}</Text>
+           </View>
+         </View>
+         </Pressable >
+       
+      ))}
+    </ScrollView>
+    <Products id={cat} navigation={navigation}/>
+    </ScrollView>
+  );
+};
+
+export default Catagories;
+
+// const Item = ({item}) => {
+//   return (
+   
+//   );
+// };

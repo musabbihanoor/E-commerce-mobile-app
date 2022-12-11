@@ -1,18 +1,18 @@
 import {makeObservable, observable, action, runInAction} from 'mobx';
 
-class Product {
+class Catagories {
   state = {
-    products: [
+    catagories: [
       
     ]
   };
 
 getProd = async () => {
     try {
-     const response = await fetch('http://10.0.2.2:8000/getAllProd');
+     const response = await fetch('http://10.0.2.2:8000/getAllCat');
      const json = await response.json();
      console.log(json)
-     this.state.products=json
+     this.state.catagories=json
    } catch (error) {
      console.error(error);
    } finally {
@@ -27,4 +27,4 @@ getProd = async () => {
   }
 }
 
-export const ProductStore = new Product();
+export const CatStore = new Catagories();

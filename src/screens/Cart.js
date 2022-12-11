@@ -1,13 +1,13 @@
 import React from 'react';
-import {View, ScrollView, Image, Text} from 'react-native';
+import {View, ScrollView, Image, Text,Pressable} from 'react-native';
 
 import Heading from '../components/Header';
 
-const Cart = () => {
+const Cart = ({navigation}) => {
   return (
     <View>
       <Heading heading="Cart" hideCart={true} />
-
+      <Pressable onPress={() => navigation.navigate("Dashboard")}><Text>Go Back</Text></Pressable>
       <ScrollView>
         <Item />
         <Item />
