@@ -2,6 +2,11 @@
   package="com.guzel">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Define ACCESS_FINE_LOCATION if you will use enableHighAccuracy=true  -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+<!-- Define ACCESS_COARSE_LOCATION if you will use enableHighAccuracy=false  -->
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
       android:name=".MainApplication"
@@ -10,6 +15,13 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+        <!-- You will only need to add this meta-data tag, but make sure it's a child of application -->
+   <meta-data
+     android:name="com.google.android.geo.API_KEY"
+     android:value="AIzaSyAnS13LgVmFlZuLvPof_ejnCs4IZwMkSbU"/> <!-- Your key goes here. -->
+ 
+   <!-- You will also only need to add this uses-library tag -->
+   <uses-library android:name="org.apache.http.legacy" android:required="false"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
@@ -23,4 +35,6 @@
         </intent-filter>
       </activity>
     </application>
+
+    
 </manifest>

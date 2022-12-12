@@ -11,7 +11,7 @@ getProd = async () => {
     try {
      const response = await fetch('http://10.0.2.2:8000/getAllProd');
      const json = await response.json();
-     console.log(json)
+     
      this.state.products=json
    } catch (error) {
      console.error(error);

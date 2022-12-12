@@ -33,7 +33,21 @@ class Auth {
     // } catch (error) {
     //   Errored(error);
     // }
+    fetch('http://10.0.2.2:8000/login', {
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    "customer_email":email,
+    "customer_password":password,
+    
+  })
+  
+});
     this.state.isAuthenticated = true;
+    
   };
 
   logout = () => {

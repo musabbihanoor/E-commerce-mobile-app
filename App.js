@@ -32,10 +32,12 @@ export const App = observer(() => {
               headerShown: false,
             }}
             initialRouteName="Dashboard">
+              
             <Drawer.Screen name="Dashboard" component={Dashboard} />
             <Drawer.Screen name="Cart" component={Cart} />
-            <Stack.Screen name="login" component={Login} />
             <Stack.Screen name="signup" component={Signup} />
+            <Stack.Screen name="login" component={Login} />
+            
           </Drawer.Navigator>
       
         

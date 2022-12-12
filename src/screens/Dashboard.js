@@ -5,12 +5,12 @@ import Header from '../components/Header';
 import Products from '../components/Products';
 import Catagories from '../components/Catagories';
 
-const Dashboard = ({navigation}) => {
+const Dashboard = ({route,navigation}) => {
   return (
     <View>
       <Header heading="Dashboard" navigation={navigation} />
       <ScrollView>
-      <Catagories navigation={navigation} />
+      <Catagories route={route} navigation={navigation} />
       
       </ScrollView>
     </View>

@@ -10,9 +10,9 @@ import {CatStore} from '../store/catagories';
 
 
 
-const Products = ({id,navigation}) => {
+const Products = ({route,id,navigation}) => {
   const [prod, setprod] = useState([{"product_name":"huzaifa"}]);
-  console.log(id)
+  
 
 const getProd = async () => {
     try {
@@ -31,20 +31,32 @@ const getProd = async () => {
   return (
     <ScrollView style={{margin: 30}}>
       {prod.map(x => (
-        <Item2 key={x.product_id} item={x} navigation={navigation} />
+        <Item2 key={x.product_id} route={route} item={x} navigation={navigation} />
       ))}
     </ScrollView>
   );
 };
 
 
-const Item2 = ({item,navigation}) => {
+const Item2 = ({route,item,navigation}) => {
+  
   const [count, setCount] = useState(0);
   const [data_,setData_]= useState([{}])
+  React.useEffect(() => {
+    if (count > 1) {
+      setData_({
+        "product_id":item.product_id,
+         "product_name":item.product_name,
+         "product_price":item.product_price,
+         "product_qty":count,
+         "product_image":item.product_image,
+      })
+    }
+  }, [count]);
   return (
     <ImageBackground
       source={{
-        uri: "https://res.cloudinary.com/fatum/image/upload/v1670756585/Products/home7-product5_vyrdgr.jpg",
+        uri: item.product_image,
       }}
       resizeMode="cover"
       style={styles.product}
@@ -89,7 +101,17 @@ const Item2 = ({item,navigation}) => {
         </Pressable>
       </View>
       <Pressable onPress={() =>{ 
-        navigation.navigate('Cart')
+        try {
+          console.log(Object.keys(route.params))
+        if (Object.keys(route.params).length==2){
+          navigation.navigate('Cart',{parama:data_,auth:true})  
+        }else{
+        navigation.navigate('Cart',{parama:data_})}
+        }
+        catch(err) {
+          navigation.navigate('Cart',{parama:data_})  
+        }
+        
         }}>
       <View
         style={{
@@ -119,11 +141,11 @@ const Item2 = ({item,navigation}) => {
   );
 };
 
-const Catagories = ({navigation}) => {
+const Catagories = ({route,navigation}) => {
   const {
     state: {catagories},
   } = CatStore;
-
+  
   const [cat, setCat] = useState(1);
   return (
     <ScrollView>
@@ -148,7 +170,7 @@ const Catagories = ({navigation}) => {
        
       ))}
     </ScrollView>
-    <Products id={cat} navigation={navigation}/>
+    <Products id={cat} route={route} navigation={navigation}/>
     </ScrollView>
   );
 };

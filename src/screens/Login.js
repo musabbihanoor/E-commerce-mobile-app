@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ToastAndroid,
 } from 'react-native';
 import Input from '../components/Input';
 import styles from '../styles';
@@ -14,11 +15,49 @@ import {AuthStore} from '../store/auth';
 import {PrimaryColor, SecondaryColor} from '../styles/theme';
 
 const Login = ({navigation}) => {
-  const {login} = AuthStore;
-
+  const Toast = ({ visible, message }) => {
+    if (visible) {
+      ToastAndroid.showWithGravityAndOffset(
+        message,
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        25,
+        50
+      );
+      return null;
+    }
+    return null;
+  };
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const login = async () => {
+    fetch('http://10.0.2.2:8000/login', {
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    "email":email,
+    "password":password,
+    
+  })
+  
+}).then(response => {
+  console.log(response)
+  if (response.ok){
+  navigation.navigate("Dashboard",{
+    parama:[],
+    auth:true,
+  })}else{
+    <Toast visible={true} message="Example" />
+  }
+}).catch(err =>console.error(err));
+    
+    this.state.isAuthenticated = true;
+    
+  };
   return (
     <View style={styles.container}>
       <Image
@@ -52,7 +91,7 @@ const Login = ({navigation}) => {
           </Text>
         </Pressable>
 
-        <TouchableOpacity style={styles.btnPrimary} onPress={login}>
+        <TouchableOpacity style={styles.btnPrimary} onPress={ () =>login()}>
           <Text style={styles.btnTextPrimary}>Submit</Text>
         </TouchableOpacity>
       </View>

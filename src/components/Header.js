@@ -9,7 +9,7 @@ import {AuthStore} from '../store/auth';
 const Header = ({heading, navigation, hideCart}) => {
   return (
     <View style={styles.header}>
-      <Pressable style={{width: 20, height: 20}}>
+      <Pressable style={{width: 20, height: 20} } onPress={() => navigation.navigate('login')}>
         <Svg height="100%" width="100%" viewBox="0 0 448 512">
           <Path
             fill="white"
@@ -21,7 +21,7 @@ const Header = ({heading, navigation, hideCart}) => {
       {!hideCart && (
         <Pressable
           style={{width: 20, height: 20, marginHorizontal: 10}}
-          onPress={() => navigation.navigate('Cart')}>
+          >
           <Svg height="100%" width="100%" viewBox="0 0 576 512">
             <Path
               fill="white"
@@ -32,7 +32,7 @@ const Header = ({heading, navigation, hideCart}) => {
       )}
       <Pressable
         style={{width: 20, height: 20, marginHorizontal: 10}}
-        onPress={AuthStore.logout}>
+        onPress={() => navigation.navigate('login')}>
         <Svg height="100%" width="100%" viewBox="0 0 512 512">
           <Path
             fill="white"
