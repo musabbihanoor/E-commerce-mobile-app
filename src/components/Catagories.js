@@ -76,7 +76,7 @@ const Item2 = ({item,navigation}) => {
         <Pressable
           style={{
             width: 20,
-            height: 20,
+            height: 20, 
           }}
           onPress={() =>  count>0?setCount(count-1):count }
           >
