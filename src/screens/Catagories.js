@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, Image, Text, View} from 'react-native';
 
-import Header from '../components/Header';
+// import Header from '../components/Header';
 
 const Product = () => {
   return (

@@ -6,7 +6,7 @@ import Dashboard from './src/screens/Dashboard';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import {Product} from './src/screens/Product';
-import Cart from './src/screens/Cart';
+import {Cart} from './src/screens/Cart';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';

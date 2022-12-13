@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import {ToastAndroid} from 'react-native';
+
 import {makeObservable, observable, action, runInAction} from 'mobx';
 import {BASE_URL} from './url';
 
@@ -9,6 +11,7 @@ class Product {
     product: {},
     categories: [],
     category: null,
+    cart: [],
   };
 
   constructor() {
@@ -17,6 +20,7 @@ class Product {
       getCategories: action,
       getProducts: action,
       getProductsByCategories: action,
+      addToCart: action,
 
       setCategory: action,
       setProduct: action,
@@ -29,6 +33,41 @@ class Product {
 
   setProduct = data => {
     this.state.product = data;
+  };
+
+  createToast = message => {
+    ToastAndroid.showWithGravityAndOffset(
+      message,
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+      0,
+      50,
+    );
+  };
+
+  addToCart = product => {
+    // this.state.cart = [...this.state.cart, {product: product, quantity: 1}];
+    // this.state.cart.map(x => console.log(x.product, product.product_id));
+    if (
+      this.state.cart.find(x => x.product.product_id === product.product_id)
+    ) {
+      this.createToast('Already in cart');
+    } else {
+      this.state.cart = [...this.state.cart, {product: product, quantity: 1}];
+      this.createToast('Added to cart');
+    }
+  };
+
+  updateCartQuantity = (product_id, quantity) => {
+    if (quantity === 0) {
+      this.state.cart = this.state.cart.filter(
+        x => x.product.product_id !== product_id,
+      );
+    } else {
+      this.state.cart = this.state.cart.map(x =>
+        x.product.product_id === product_id ? {...x, quantity: quantity} : x,
+      );
+    }
   };
 
   getCategories = async () => {

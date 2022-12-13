@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, Image, Text, View, Pressable} from 'react-native';
 
-import Header from '../components/Header';
+// import Header from '../components/Header';
 
 import {ProductStore} from '../store/product';
 import {observer} from 'mobx-react';
@@ -11,6 +11,7 @@ import Svg, {Path} from 'react-native-svg';
 export const Product = observer(() => {
   const {
     state: {product},
+    addToCart,
   } = ProductStore;
 
   return (
@@ -23,6 +24,9 @@ export const Product = observer(() => {
         }}
       />
       <Pressable
+        onPress={() => {
+          addToCart(product);
+        }}
         style={{
           width: 50,
           height: 50,

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ScrollView, Text} from 'react-native';
 
-import Header from '../components/Header';
+import {Header} from '../components/Header';
 // import Products from '../components/Products';
 import {Categories} from '../components/Categories';
 import {Products} from '../components/Products';
