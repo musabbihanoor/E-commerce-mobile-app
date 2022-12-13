@@ -37,9 +37,9 @@ class Product {
     try {
       const res = await axios.get(`${BASE_URL}/getAllProd`);
       console.log(res);
+      this.state.products = res.data;
     } catch (error) {
       console.error(error);
-    } finally {
     }
   };
 
@@ -50,7 +50,6 @@ class Product {
       this.state.products = res.data;
     } catch (error) {
       console.error(error);
-    } finally {
     }
   };
 }

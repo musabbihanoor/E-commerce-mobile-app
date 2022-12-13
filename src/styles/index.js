@@ -76,8 +76,6 @@ const styles = StyleSheet.create({
   },
 
   category: {
-    backgroundColor: '#ccc',
-    paddingHorizontal: 15,
     paddingVertical: 5,
     marginHorizontal: 5,
     borderRadius: 5,
@@ -85,11 +83,16 @@ const styles = StyleSheet.create({
 
   categoryText: {
     fontSize: 16,
+    fontWeight: '700',
+    color: '#A2A0A1',
   },
 
   categoryTextSelected: {
     fontSize: 16,
-    color: '#000',
+    fontWeight: '700',
+    color: '#21282F',
+    borderColor: '#21282F',
+    borderBottomWidth: 1,
   },
 });
 

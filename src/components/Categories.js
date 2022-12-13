@@ -19,7 +19,17 @@ export const Categories = observer(() => {
   }, []);
 
   return (
-    <ScrollView horizontal={true} style={{margin: 30}}>
+    <ScrollView horizontal={true} style={{marginVertical: 20}}>
+      <Pressable style={styles.category} onPress={() => setCategory(null)}>
+        <Text
+          style={
+            category === null
+              ? styles.categoryTextSelected
+              : styles.categoryText
+          }>
+          All
+        </Text>
+      </Pressable>
       {categories.map((x, i) => (
         <Pressable
           style={styles.category}
@@ -31,7 +41,7 @@ export const Categories = observer(() => {
                 ? styles.categoryTextSelected
                 : styles.categoryText
             }>
-            {'\ue318'} {x.product_category_name}
+            {x.product_category_name}
           </Text>
         </Pressable>
       ))}
@@ -43,12 +53,13 @@ export const Products = observer(({route, id, navigation}) => {
   const {
     state: {products, category},
     getProductsByCategories,
+    getProducts,
   } = ProductStore;
 
   // const [prod, setprod] = useState([{product_name: 'huzaifa'}]);
 
   useEffect(() => {
-    category && getProductsByCategories(category);
+    category ? getProductsByCategories(category) : getProducts();
   }, [category]);
 
   return (

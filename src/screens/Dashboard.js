@@ -1,20 +1,28 @@
 import React from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Text} from 'react-native';
 
 import Header from '../components/Header';
 // import Products from '../components/Products';
-import {Categories, Products} from '../components/Categories';
-import MyCarousel from '../components/Carousel';
+import {Categories} from '../components/Categories';
+import Products from '../components/Products';
 
-const Dashboard = ({route, navigation}) => {
+const Dashboard = ({navigation}) => {
   return (
     <View>
       <Header heading="" navigation={navigation} />
-      <ScrollView>
+      <View style={{marginLeft: 20}}>
+        <Text
+          style={{
+            fontWeight: '900',
+            fontSize: 24,
+            color: '#21282F',
+            fontFamily: 'Poppins',
+          }}>
+          Categories
+        </Text>
         <Categories />
-
-        <MyCarousel />
-
+      </View>
+      <ScrollView>
         <Products />
       </ScrollView>
     </View>
