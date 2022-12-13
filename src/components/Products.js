@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 import {View, ImageBackground, Text, ScrollView, Pressable} from 'react-native';
 
@@ -7,28 +7,25 @@ import Svg, {Path} from 'react-native-svg';
 
 import {ProductStore} from '../store/product';
 
-
-
 const Products = () => {
-  const [prod, setprod] = useState([{"product_name":"huzaifa"}]);
-  
+  const [prod, setprod] = useState([{product_name: 'huzaifa'}]);
 
-const getProd = async () => {
-    try {
-     const response = await fetch('http://10.0.2.2:8000/getAllProd');
-     const json = await response.json();
-     console.log(json)
-     setprod(json)
-   } catch (error) {
-     console.error(error);
-   } finally {
-   }
-}
-  getProd()
+  // const getProd = async () => {
+  //   try {
+  //     const response = await fetch('http://10.0.2.2:8000/getAllProd');
+  //     const json = await response.json();
+  //     console.log(json);
+  //     setprod(json);
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //   }
+  // };
+  ProductStore.getProd();
   return (
     <ScrollView style={{margin: 30}}>
-      {prod.map(x => (
-        <Item key={x.product_id} item={x} />
+      {prod.map((x, i) => (
+        <Item key={i} item={x} />
       ))}
     </ScrollView>
   );
@@ -42,12 +39,11 @@ const Item = ({item}) => {
   return (
     <ImageBackground
       source={{
-        uri: "https://res.cloudinary.com/fatum/image/upload/v1670756585/Products/home7-product5_vyrdgr.jpg",
+        uri: 'https://res.cloudinary.com/fatum/image/upload/v1670756585/Products/home7-product5_vyrdgr.jpg',
       }}
       resizeMode="cover"
       style={styles.product}
-      imageStyle={{borderRadius: 10}}
-      >
+      imageStyle={{borderRadius: 10}}>
       <View
         style={{
           position: 'absolute',
@@ -60,7 +56,8 @@ const Item = ({item}) => {
           style={{
             width: 20,
             height: 20,
-          }} onPress={()=> setCount(count+1)}>
+          }}
+          onPress={() => setCount(count + 1)}>
           <Svg height="100%" width="100%" viewBox="0 0 448 512">
             <Path
               fill="black"
@@ -76,8 +73,7 @@ const Item = ({item}) => {
             width: 20,
             height: 20,
           }}
-          onPress={() =>  count>0?setCount(count-1):count }
-          >
+          onPress={() => (count > 0 ? setCount(count - 1) : count)}>
           <Svg height="100%" width="100%" viewBox="0 0 448 512">
             <Path
               fill="black"
@@ -96,7 +92,9 @@ const Item = ({item}) => {
             flexDirection: 'row',
             alignItems: 'flex-end',
           }}>
-          <Text style={{color: 'black', fontSize: 24}}>{item.product_name}</Text>
+          <Text style={{color: 'black', fontSize: 24}}>
+            {item.product_name}
+          </Text>
           <Text
             style={{
               color: 'black',
@@ -108,7 +106,7 @@ const Item = ({item}) => {
             - PKR {item.product_price}
           </Text>
         </View>
-        <Text style={{color: 'black'}}>{item.product_description }</Text>
+        <Text style={{color: 'black'}}>{item.product_description}</Text>
       </View>
     </ImageBackground>
   );

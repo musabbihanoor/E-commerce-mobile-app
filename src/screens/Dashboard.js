@@ -1,17 +1,21 @@
 import React from 'react';
-import {View,ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 
 import Header from '../components/Header';
-import Products from '../components/Products';
-import Catagories from '../components/Catagories';
+// import Products from '../components/Products';
+import {Categories, Products} from '../components/Categories';
+import MyCarousel from '../components/Carousel';
 
-const Dashboard = ({route,navigation}) => {
+const Dashboard = ({route, navigation}) => {
   return (
     <View>
-      <Header heading="Dashboard" navigation={navigation} />
+      <Header heading="" navigation={navigation} />
       <ScrollView>
-      <Catagories route={route} navigation={navigation} />
-      
+        <Categories />
+
+        <MyCarousel />
+
+        <Products />
       </ScrollView>
     </View>
   );

@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    backgroundColor: SecondaryColor,
+    backgroundColor: 'transparent',
     padding: 15,
     flexDirection: 'row',
     alignItems: 'center',
@@ -73,6 +73,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'flex-end',
     marginBottom: 10,
+  },
+
+  category: {
+    backgroundColor: '#ccc',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    marginHorizontal: 5,
+    borderRadius: 5,
+  },
+
+  categoryText: {
+    fontSize: 16,
+  },
+
+  categoryTextSelected: {
+    fontSize: 16,
+    color: '#000',
   },
 });
 
