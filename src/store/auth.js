@@ -2,6 +2,8 @@ import axios from 'axios';
 import {makeObservable, observable, action, runInAction} from 'mobx';
 import {BASE_URL} from './url';
 
+import {ToastAndroid} from 'react-native';
+
 class Auth {
   state = {
     isAuthenticated: false,
@@ -17,6 +19,16 @@ class Auth {
     });
   }
 
+  createToast = message => {
+    ToastAndroid.showWithGravityAndOffset(
+      message,
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+      0,
+      50,
+    );
+  };
+
   login = async data => {
     try {
       const config = {
@@ -27,9 +39,17 @@ class Auth {
       const res = await axios.post(`${BASE_URL}/login`, data, config);
       console.log(res);
       this.state.isAuthenticated = true;
+
+      this.createToast('Logged in successfully');
+
+      return 1;
     } catch (err) {
       console.log(err);
       this.state.isAuthenticated = false;
+
+      this.createToast('Login failed');
+
+      return 0;
     }
   };
 
@@ -43,9 +63,17 @@ class Auth {
       const res = await axios.post(`${BASE_URL}/registration`, data, config);
       console.log(res);
       this.state.isAuthenticated = true;
+
+      this.createToast('Account created successfully');
+
+      return 1;
     } catch (err) {
       console.log(err);
       this.state.isAuthenticated = false;
+
+      this.createToast('Please enter correct data');
+
+      return 0;
     }
   };
 

@@ -60,9 +60,10 @@ const Login = ({navigation}) => {
 
   //   };
 
-  const onSubmit = () => {
-    AuthStore.login({email: email, password: password});
-    navigation.navigate('Dashboard');
+  const onSubmit = async () => {
+    AuthStore.login({email: email, password: password}).then(res => {
+      res === 1 && navigation.navigate('Dashboard');
+    });
   };
 
   return (

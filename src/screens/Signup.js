@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Image,
   Text,
@@ -36,7 +36,7 @@ const Signup = ({navigation}) => {
   const [order_map_lat, setlat] = useState(0);
   const [order_map_lon, setlot] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     GetLocation.getCurrentPosition({
       enableHighAccuracy: true,
       timeout: 15000,
@@ -52,32 +52,16 @@ const Signup = ({navigation}) => {
       });
   }, []);
 
-  // const Register = async () => {
-  //   fetch('http://10.0.2.2:8000/registration', {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  // customer_email: email,
-  // customer_password: password,
-  // customer_firstname: name,
-  // order_map_lat: lat,
-  // order_map_lon: lot,
-  //     }),
-  //   });
-  // };
-
-  const onSubmit = () => {
+  const onSubmit = async () => {
     AuthStore.register({
       customer_email: customer_email,
       customer_password: customer_password,
       customer_firstname: customer_firstname,
       order_map_lat: order_map_lat,
       order_map_lon: order_map_lon,
+    }).then(res => {
+      res === 1 && navigation.navigate('Dashboard');
     });
-    navigation.navigate('Dashboard');
   };
 
   return (
@@ -86,8 +70,8 @@ const Signup = ({navigation}) => {
         style={styles2.map}
         //specify our coordinates.
         initialRegion={{
-          latitude: 24.905875,
-          longitude: 67.138275,
+          latitude: order_map_lat,
+          longitude: order_map_lon,
           latitudeDelta: 0.04,
           longitudeDelta: 0.05,
         }}
