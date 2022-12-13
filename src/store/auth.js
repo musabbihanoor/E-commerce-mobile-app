@@ -79,6 +79,8 @@ class Auth {
 
   logout = () => {
     this.state.isAuthenticated = false;
+
+    this.createToast('Logged out');
   };
 }
 
