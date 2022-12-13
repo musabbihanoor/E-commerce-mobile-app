@@ -21,6 +21,7 @@ class Product {
       getProducts: action,
       getProductsByCategories: action,
       addToCart: action,
+      createOrder: action,
 
       setCategory: action,
       setProduct: action,
@@ -97,6 +98,31 @@ class Product {
       this.state.products = res.data;
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  createOrder = async () => {
+    const data = [];
+
+    this.state.cart.map(x => {
+      data.push([x.product.product_id, x.quantity]);
+    });
+
+    console.log(data);
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.post(`${BASE_URL}/createorder`, data, config);
+
+      console.log(res);
+
+      return res;
+    } catch (err) {
+      console.log(err);
     }
   };
 }

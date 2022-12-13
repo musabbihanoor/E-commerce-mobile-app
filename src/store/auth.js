@@ -1,4 +1,6 @@
+import axios from 'axios';
 import {makeObservable, observable, action, runInAction} from 'mobx';
+import {BASE_URL} from './url';
 
 class Auth {
   state = {
@@ -10,44 +12,41 @@ class Auth {
     makeObservable(this, {
       state: observable,
       login: action,
+      register: action,
       logout: action,
     });
   }
 
-  login = async () => {
-    // try {
-    //   const response = await axios.get(
-    //     "abcdbasdb",
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //     },
-    //   );
-    //   if (response.status === 200) {
-        
-    //     this.state.isAuthenticated = true;
-    //     this.state.user=response.data
-        
-    //   }
-    // } catch (error) {
-    //   Errored(error);
-    // }
-    fetch('http://10.0.2.2:8000/login', {
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    "customer_email":email,
-    "customer_password":password,
-    
-  })
-  
-});
-    this.state.isAuthenticated = true;
-    
+  login = async data => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.post(`${BASE_URL}/login`, data, config);
+      console.log(res);
+      this.state.isAuthenticated = true;
+    } catch (err) {
+      console.log(err);
+      this.state.isAuthenticated = false;
+    }
+  };
+
+  register = async data => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.post(`${BASE_URL}/registration`, data, config);
+      console.log(res);
+      this.state.isAuthenticated = true;
+    } catch (err) {
+      console.log(err);
+      this.state.isAuthenticated = false;
+    }
   };
 
   logout = () => {
