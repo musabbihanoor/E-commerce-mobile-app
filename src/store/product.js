@@ -6,6 +6,7 @@ import {BASE_URL} from './url';
 class Product {
   state = {
     products: [],
+    product: {},
     categories: [],
     category: null,
   };
@@ -16,11 +17,18 @@ class Product {
       getCategories: action,
       getProducts: action,
       getProductsByCategories: action,
+
+      setCategory: action,
+      setProduct: action,
     });
   }
 
   setCategory = id => {
     this.state.category = id;
+  };
+
+  setProduct = data => {
+    this.state.product = data;
   };
 
   getCategories = async () => {

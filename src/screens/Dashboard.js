@@ -4,7 +4,7 @@ import {View, ScrollView, Text} from 'react-native';
 import Header from '../components/Header';
 // import Products from '../components/Products';
 import {Categories} from '../components/Categories';
-import Products from '../components/Products';
+import {Products} from '../components/Products';
 
 const Dashboard = ({navigation}) => {
   return (
@@ -23,7 +23,7 @@ const Dashboard = ({navigation}) => {
         <Categories />
       </View>
       <ScrollView>
-        <Products />
+        <Products navigation={navigation} />
       </ScrollView>
     </View>
   );

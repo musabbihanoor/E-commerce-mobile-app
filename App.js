@@ -5,7 +5,7 @@ import {View} from 'react-native';
 import Dashboard from './src/screens/Dashboard';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
-import Product from './src/screens/Product';
+import {Product} from './src/screens/Product';
 import Cart from './src/screens/Cart';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -32,15 +32,13 @@ export const App = observer(() => {
               headerShown: false,
             }}
             initialRouteName="Dashboard">
-              
             <Drawer.Screen name="Dashboard" component={Dashboard} />
             <Drawer.Screen name="Cart" component={Cart} />
             <Stack.Screen name="signup" component={Signup} />
             <Stack.Screen name="login" component={Login} />
-            
+            <Stack.Screen name="Product" component={Product} />
           </Drawer.Navigator>
-      
-        
+
           {/* <Stack.Navigator
             screenOptions={{
               headerShown: false,
