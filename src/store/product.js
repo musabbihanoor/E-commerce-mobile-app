@@ -5,6 +5,9 @@ import {ToastAndroid} from 'react-native';
 import {makeObservable, observable, action, runInAction} from 'mobx';
 import {BASE_URL} from './url';
 
+import {categories} from '../data/categories';
+import {products} from '../data/products';
+
 class Product {
   state = {
     products: [],
@@ -72,23 +75,26 @@ class Product {
   };
 
   getCategories = async () => {
-    try {
-      const res = await axios.get(`${BASE_URL}/getAllCat`);
-      console.log(res.data);
-      this.state.categories = res.data;
-    } catch (error) {
-      console.error(error);
-    }
+    // try {
+    //   const res = await axios.get(`${BASE_URL}/getAllCat`);
+    //   console.log(res.data);
+    //   this.state.categories = res.data;
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    this.state.categories = categories;
   };
 
   getProducts = async () => {
-    try {
-      const res = await axios.get(`${BASE_URL}/getAllProd`);
-      console.log(res);
-      this.state.products = res.data;
-    } catch (error) {
-      console.error(error);
-    }
+    // try {
+    //   const res = await axios.get(`${BASE_URL}/getAllProd`);
+    //   console.log(res);
+    //   this.state.products = res.data;
+    // } catch (error) {
+    //   console.error(error);
+    // }
+
+    this.state.products = products;
   };
 
   getProductsByCategories = async id => {

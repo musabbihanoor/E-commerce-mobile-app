@@ -83,16 +83,16 @@ const styles = StyleSheet.create({
 
   categoryText: {
     fontSize: 16,
-    fontWeight: '700',
     color: '#A2A0A1',
+    fontFamily: 'Poppins-Regular',
   },
 
   categoryTextSelected: {
     fontSize: 16,
-    fontWeight: '700',
     color: '#21282F',
     borderColor: '#21282F',
     borderBottomWidth: 1,
+    fontFamily: 'Poppins-SemiBold',
   },
 });
 

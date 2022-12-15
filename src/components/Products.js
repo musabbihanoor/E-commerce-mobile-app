@@ -31,6 +31,17 @@ export const Products = observer(({navigation}) => {
     category ? getProductsByCategories(category) : getProducts();
   }, [category]);
 
+  const shuffle = a => {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+    }
+    return a;
+  };
+
   const goForward = () => {
     carouselRef.current.snapToNext();
   };
@@ -46,7 +57,7 @@ export const Products = observer(({navigation}) => {
         }}
         style={styles.item}>
         <ParallaxImage
-          source={{uri: item.product_image}}
+          source={{uri: item.imgs[0]}}
           containerStyle={styles.imageContainer}
           style={styles.image}
           parallaxFactor={0.4}
@@ -74,23 +85,30 @@ export const Products = observer(({navigation}) => {
               </Svg>
             </Pressable>
           )} */}
-            <Text style={{fontSize: 16, color: '#fff', fontWeight: '700'}}>
-              {item.product_description}
-            </Text>
-            <Text style={{fontSize: 35, color: '#fff', fontWeight: '700'}}>
-              {item.product_name}
+
+            <Text
+              style={{
+                fontFamily: 'Poppins-Bold',
+                fontSize: 30,
+                color: '#fff',
+                textShadowColor: 'rgba(0, 0, 0, 0.25)',
+                textShadowOffset: {width: -1, height: 1},
+                textShadowRadius: 10,
+              }}>
+              {item.name}
             </Text>
           </View>
 
           <View
             style={{
+              fontFamily: 'Poppins-SemiBold',
               alignSelf: 'flex-end',
               backgroundColor: '#eee',
               paddingHorizontal: 15,
               paddingVertical: 5,
               borderRadius: 3,
             }}>
-            <Text style={{fontSize: 16}}>{item.product_price} PKR</Text>
+            <Text style={{fontSize: 16}}>${item.price}</Text>
           </View>
         </View>
       </Pressable>
@@ -104,7 +122,7 @@ export const Products = observer(({navigation}) => {
         sliderWidth={screenWidth}
         sliderHeight={screenWidth}
         itemWidth={screenWidth - 60}
-        data={products}
+        data={shuffle(products)}
         renderItem={renderItem}
         hasParallaxImages={true}
       />

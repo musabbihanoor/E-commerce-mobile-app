@@ -13,10 +13,9 @@ const Dashboard = ({navigation}) => {
       <View style={{marginLeft: 20}}>
         <Text
           style={{
-            fontWeight: '900',
+            fontFamily: 'Poppins-SemiBold',
             fontSize: 24,
             color: '#21282F',
-            fontFamily: 'Poppins',
           }}>
           Categories
         </Text>

@@ -20,7 +20,7 @@ export const Product = observer(() => {
       <Image
         style={{height: 400, borderBottomLeftRadius: 50}}
         source={{
-          uri: product.product_image,
+          uri: product.imgs[0],
         }}
       />
       <Pressable
@@ -52,22 +52,18 @@ export const Product = observer(() => {
             marginBottom: 20,
           }}>
           <View>
-            <Text style={{color: '#000', fontSize: 30}}>
-              {product.product_name}
-            </Text>
-            <Text style={{color: '#000', fontSize: 16}}>
-              {product.product_description}
+            <Text
+              style={{
+                color: '#000',
+                fontSize: 24,
+                fontFamily: 'Poppins-Regular',
+              }}>
+              {product.name}
             </Text>
           </View>
-          <Text>{product.product_price} PKR</Text>
+          <Text style={{fontFamily: 'Poppins-Light'}}>${product.price}</Text>
         </View>
-        <Text>
-          Do nulla cillum esse sint cillum exercitation cillum irure magna
-          Lorem. Culpa aute magna et laborum deserunt qui adipisicing
-          adipisicing nisi do Lorem sunt. Voluptate aute irure laborum et esse
-          ex tempor sint in cupidatat nulla elit eu. Officia cupidatat sunt
-          proident aliquip culpa ex mollit.
-        </Text>
+        <Text style={{fontFamily: 'Poppins-Light'}}>{product.description}</Text>
       </View>
     </ScrollView>
   );

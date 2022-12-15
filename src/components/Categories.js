@@ -33,14 +33,14 @@ export const Categories = observer(() => {
         <Pressable
           style={styles.category}
           key={i}
-          onPress={() => setCategory(x.product_category_id)}>
+          onPress={() => setCategory(x.id)}>
           <Text
             style={
-              category && category === x.product_category_id
+              category && category === x.id
                 ? styles.categoryTextSelected
                 : styles.categoryText
             }>
-            {x.product_category_name}
+            {x.name}
           </Text>
         </Pressable>
       ))}
