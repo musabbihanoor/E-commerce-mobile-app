@@ -18,7 +18,7 @@ export const Categories = observer(() => {
   }, []);
 
   return (
-    <ScrollView horizontal={true} style={{marginVertical: 20}}>
+    <ScrollView horizontal={true} style={styles.categoryList}>
       <Pressable style={styles.category} onPress={() => setCategory(null)}>
         <Text
           style={

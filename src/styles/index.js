@@ -9,6 +9,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
 
+  heading: {
+    marginVertical: 10,
+    marginHorizontal: 20,
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 24,
+    color: '#21282F',
+  },
+
   form: {
     width: '100%',
   },
@@ -67,11 +75,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 10,
   },
-  cat: {
-    height: 50,
-    width: '100%',
-    borderRadius: 10,
-    justifyContent: 'flex-end',
+
+  categoryList: {
+    marginLeft: 20,
     marginBottom: 10,
   },
 
@@ -95,6 +101,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc',
     paddingHorizontal: 20,
     borderRadius: 5,
+  },
+
+  productGrid: {
+    flexDirection: 'row',
+  },
+
+  gridItem: {
+    width: 150,
+    marginLeft: 10,
+  },
+
+  gridImg: {
+    width: 150,
+    height: 150,
+    resizeMode: 'cover',
+  },
+
+  gridText: {
+    fontFamily: 'Poppins-SemiBold',
+  },
+
+  gridPrice: {
+    fontFamily: 'Poppins-Regular',
   },
 });
 

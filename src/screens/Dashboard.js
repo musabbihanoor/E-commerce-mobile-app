@@ -1,30 +1,25 @@
 import React from 'react';
-import {View, ScrollView, Text} from 'react-native';
+import {Image, ScrollView, Text} from 'react-native';
 
 import {Header} from '../components/Header';
 // import Products from '../components/Products';
 import {Categories} from '../components/Categories';
-import {Products} from '../components/Products';
+import {ProductCarousel} from '../components/ProductCarousel';
+import {ProductGrid} from '../components/ProductGrid';
+import styles from '../styles';
 
 const Dashboard = ({navigation}) => {
   return (
-    <View>
+    <ScrollView>
       <Header heading="" navigation={navigation} />
-      <View style={{marginLeft: 20}}>
-        <Text
-          style={{
-            fontFamily: 'Poppins-SemiBold',
-            fontSize: 24,
-            color: '#21282F',
-          }}>
-          Categories
-        </Text>
-        <Categories />
-      </View>
-      <ScrollView>
-        <Products navigation={navigation} />
-      </ScrollView>
-    </View>
+      <Text style={styles.heading}>Explore</Text>
+      <Categories />
+      <ProductCarousel navigation={navigation} />
+      <Text style={styles.heading}>Popular Products</Text>
+      <ProductGrid navigation={navigation} />
+      <Text style={styles.heading}>Top Picks For You</Text>
+      <ProductGrid navigation={navigation} />
+    </ScrollView>
   );
 };
 
