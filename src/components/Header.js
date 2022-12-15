@@ -27,7 +27,7 @@ export const Header = observer(({heading, navigation, hideCart}) => {
         </Svg>
       </Pressable>
       <Text style={styles.headerText}>{heading}</Text>
-      {!hideCart && (
+      {/* {!hideCart && (
         <Pressable
           onPress={() => navigation.navigate('Cart')}
           style={{
@@ -44,7 +44,7 @@ export const Header = observer(({heading, navigation, hideCart}) => {
           </Svg>
           <Text style={{color: 'red', top: -10}}>{cart.length}</Text>
         </Pressable>
-      )}
+      )} */}
       {AuthStore.state.isAuthenticated && (
         <Pressable
           style={{width: 20, height: 20, marginHorizontal: 10}}
