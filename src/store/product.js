@@ -10,6 +10,7 @@ import {products} from '../data/products';
 
 class Product {
   state = {
+    allProducts: [],
     products: [],
     product: {},
     categories: [],
@@ -50,8 +51,6 @@ class Product {
   };
 
   addToCart = product => {
-    // this.state.cart = [...this.state.cart, {product: product, quantity: 1}];
-    // this.state.cart.map(x => console.log(x.product, product.product_id));
     if (
       this.state.cart.find(x => x.product.product_id === product.product_id)
     ) {
@@ -75,36 +74,16 @@ class Product {
   };
 
   getCategories = async () => {
-    // try {
-    //   const res = await axios.get(`${BASE_URL}/getAllCat`);
-    //   console.log(res.data);
-    //   this.state.categories = res.data;
-    // } catch (error) {
-    //   console.error(error);
-    // }
     this.state.categories = categories;
   };
 
   getProducts = async () => {
-    // try {
-    //   const res = await axios.get(`${BASE_URL}/getAllProd`);
-    //   console.log(res);
-    //   this.state.products = res.data;
-    // } catch (error) {
-    //   console.error(error);
-    // }
-
     this.state.products = products;
+    this.state.allProducts = products;
   };
 
   getProductsByCategories = async id => {
-    try {
-      const res = await axios.get(`${BASE_URL}/getProdbyCat/${id}/`);
-      console.log(res);
-      this.state.products = res.data;
-    } catch (error) {
-      console.error(error);
-    }
+    this.state.products = this.state.allProducts.filter(x => x.category === id);
   };
 
   createOrder = async () => {

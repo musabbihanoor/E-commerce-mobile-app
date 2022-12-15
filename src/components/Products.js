@@ -1,5 +1,8 @@
 import React, {useRef, useState, useEffect} from 'react';
-import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
+import Carousel, {
+  ParallaxImage,
+  Pagination,
+} from 'react-native-snap-carousel-v4';
 import {
   View,
   Text,
@@ -27,9 +30,16 @@ export const Products = observer(({navigation}) => {
 
   const carouselRef = useRef(null);
 
+  const [data, setData] = useState([]);
+  const [activeSlide, setActiveSlide] = useState(0);
+
   useEffect(() => {
     category ? getProductsByCategories(category) : getProducts();
   }, [category]);
+
+  useEffect(() => {
+    setData(shuffle(products));
+  }, [products]);
 
   const shuffle = a => {
     var j, x, i;
@@ -122,9 +132,10 @@ export const Products = observer(({navigation}) => {
         sliderWidth={screenWidth}
         sliderHeight={screenWidth}
         itemWidth={screenWidth - 60}
-        data={shuffle(products)}
+        data={data}
         renderItem={renderItem}
         hasParallaxImages={true}
+        onSnapToItem={index => setActiveSlide(index)}
       />
     </View>
   );
@@ -144,6 +155,7 @@ const styles = StyleSheet.create({
     marginBottom: Platform.select({ios: 0, android: 1}), // Prevent a random Android rendering issue
     backgroundColor: 'white',
     borderRadius: 8,
+    opacity: 0.75,
   },
   image: {
     ...StyleSheet.absoluteFillObject,

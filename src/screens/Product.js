@@ -1,5 +1,13 @@
-import React from 'react';
-import {ScrollView, Image, Text, View, Pressable} from 'react-native';
+import React, {useState} from 'react';
+import {
+  ScrollView,
+  Image,
+  Text,
+  View,
+  Pressable,
+  Dimensions,
+} from 'react-native';
+import Carousel, {Pagination} from 'react-native-snap-carousel-v4';
 
 // import Header from '../components/Header';
 
@@ -8,21 +16,66 @@ import {observer} from 'mobx-react';
 
 import Svg, {Path} from 'react-native-svg';
 
+const {width: screenWidth} = Dimensions.get('window');
+
 export const Product = observer(() => {
   const {
     state: {product},
     addToCart,
   } = ProductStore;
 
-  return (
-    <ScrollView>
-      {/* <Header heading="Product" /> */}
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const renderItem = ({item}) => {
+    return (
       <Image
         style={{height: 400, borderBottomLeftRadius: 50}}
         source={{
-          uri: product.imgs[0],
+          uri: item,
         }}
       />
+    );
+  };
+
+  const PaginationView = () => {
+    return (
+      <Pagination
+        dotsLength={product.imgs.length}
+        activeDotIndex={activeSlide}
+        containerStyle={{marginTop: -50}}
+        dotStyle={{
+          width: 30,
+          height: 10,
+          borderRadius: 5,
+          backgroundColor: 'rgba(255, 255, 255, 0.92)',
+        }}
+        inactiveDotStyle={{
+          width: 10,
+          height: 10,
+          borderRadius: 5,
+          backgroundColor: 'rgba(255, 255, 255, 0.92)',
+        }}
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+      />
+    );
+  };
+
+  return (
+    <ScrollView>
+      {/* <Header heading="Product" /> */}
+
+      <Carousel
+        data={product.imgs}
+        renderItem={renderItem}
+        sliderWidth={screenWidth}
+        sliderHeight={screenWidth}
+        itemWidth={screenWidth}
+        layout={'tinder'}
+        onSnapToItem={index => setActiveSlide(index)}
+      />
+      <PaginationView />
+
       <Pressable
         onPress={() => {
           addToCart(product);

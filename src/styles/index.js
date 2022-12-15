@@ -85,14 +85,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#A2A0A1',
     fontFamily: 'Poppins-Regular',
+    paddingHorizontal: 15,
   },
 
   categoryTextSelected: {
     fontSize: 16,
-    color: '#21282F',
-    borderColor: '#21282F',
-    borderBottomWidth: 1,
+    color: '#fff',
     fontFamily: 'Poppins-SemiBold',
+    backgroundColor: '#ccc',
+    paddingHorizontal: 20,
+    borderRadius: 5,
   },
 });
 
