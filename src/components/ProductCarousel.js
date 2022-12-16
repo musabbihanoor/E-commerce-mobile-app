@@ -20,39 +20,16 @@ const {width: screenWidth} = Dimensions.get('window');
 
 export const ProductCarousel = observer(({navigation}) => {
   const {
-    state: {products, category},
-    getProductsByCategories,
+    state: {products},
     getProducts,
     setProduct,
   } = ProductStore;
 
   const carouselRef = useRef(null);
 
-  const [data, setData] = useState([]);
-  const [activeSlide, setActiveSlide] = useState(0);
-
   useEffect(() => {
-    category ? getProductsByCategories(category) : getProducts();
-  }, [category]);
-
-  useEffect(() => {
-    setData(shuffle(products));
-  }, [products]);
-
-  const shuffle = a => {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = a[i];
-      a[i] = a[j];
-      a[j] = x;
-    }
-    return a;
-  };
-
-  const goForward = () => {
-    carouselRef.current.snapToNext();
-  };
+    getProducts();
+  }, []);
 
   const renderItem = ({item}, parallaxProps) => {
     return (
@@ -72,39 +49,13 @@ export const ProductCarousel = observer(({navigation}) => {
 
         <View style={styles.details}>
           <View>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Bold',
-                fontSize: 30,
-                color: '#fff',
-                textShadowColor: 'rgba(0, 0, 0, 0.25)',
-                textShadowOffset: {width: -1, height: 1},
-                textShadowRadius: 10,
-              }}>
-              {item.name}
-            </Text>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Regular',
-                fontSize: 14,
-                color: '#fff',
-                textShadowColor: 'rgba(0, 0, 0, 0.25)',
-                textShadowOffset: {width: -1, height: 1},
-                textShadowRadius: 10,
-              }}>
+            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.description}>
               {item.description.slice(0, 200)}...
             </Text>
           </View>
 
-          <View
-            style={{
-              fontFamily: 'Poppins-SemiBold',
-              alignSelf: 'flex-end',
-              backgroundColor: '#eee',
-              paddingHorizontal: 15,
-              paddingVertical: 5,
-              borderRadius: 3,
-            }}>
+          <View style={styles.price}>
             <Text style={{fontSize: 16}}>${item.price}</Text>
           </View>
         </View>
@@ -119,10 +70,9 @@ export const ProductCarousel = observer(({navigation}) => {
         sliderWidth={screenWidth}
         sliderHeight={screenWidth}
         itemWidth={screenWidth - 60}
-        data={data}
+        data={products}
         renderItem={renderItem}
         hasParallaxImages={true}
-        onSnapToItem={index => setActiveSlide(index)}
       />
     </View>
   );
@@ -166,5 +116,32 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: 'rgba(0,0,0,0.5)',
     borderRadius: 8,
+  },
+
+  name: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 30,
+    color: '#fff',
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
+  },
+
+  description: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
+    color: '#fff',
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
+  },
+
+  price: {
+    fontFamily: 'Poppins-SemiBold',
+    alignSelf: 'flex-end',
+    backgroundColor: '#eee',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    borderRadius: 3,
   },
 });

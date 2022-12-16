@@ -190,6 +190,51 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 25,
   },
+
+  btnMain: {
+    backgroundColor: '#000',
+    padding: 15,
+    width: 200,
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderRadius: 50,
+    marginBottom: 20,
+  },
+
+  cartItem: {
+    borderColor: '#ccc',
+    borderBottomWidth: 1,
+    margin: 10,
+    padding: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 0,
+  },
+
+  cartName: {
+    marginLeft: 5,
+    fontSize: 16,
+    color: '#000',
+    fontFamily: 'Poppins-SemiBold',
+  },
+
+  cartPrice: {
+    marginLeft: 5,
+    fontSize: 14,
+    color: '#000',
+    fontFamily: 'Poppins-Regular',
+  },
+
+  cartQuantity: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 30,
+    borderColor: '#eee',
+    borderWidth: 1,
+  },
 });
 
 export default styles;

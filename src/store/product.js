@@ -11,6 +11,7 @@ import {products} from '../data/products';
 class Product {
   state = {
     allProducts: [],
+    searchedProducts: [],
     products: [],
     product: {},
     categories: [],
@@ -24,21 +25,14 @@ class Product {
       getCategories: action,
       getProducts: action,
       getProductsByCategories: action,
+      getSearchedProducts: action,
+      getRandomProducts: action,
       addToCart: action,
-      createOrder: action,
 
       setCategory: action,
       setProduct: action,
     });
   }
-
-  setCategory = id => {
-    this.state.category = id;
-  };
-
-  setProduct = data => {
-    this.state.product = data;
-  };
 
   createToast = message => {
     ToastAndroid.showWithGravityAndOffset(
@@ -48,6 +42,52 @@ class Product {
       0,
       50,
     );
+  };
+
+  shuffle = a => {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+    }
+    return a;
+  };
+
+  getCategories = async () => {
+    this.state.categories = categories;
+  };
+
+  getProducts = async () => {
+    this.state.products = this.shuffle(products);
+    this.state.allProducts = this.shuffle(products);
+  };
+
+  getProductsByCategories = async id => {
+    this.state.products = this.shuffle(
+      this.state.allProducts.filter(x => x.category === id),
+    );
+  };
+
+  getSearchedProducts = text => {
+    this.state.searchedProducts = this.shuffle(
+      this.state.allProducts.filter(x =>
+        x.name.toLowerCase().includes(text.toLowerCase()),
+      ),
+    );
+  };
+
+  getRandomProducts = () => {
+    return this.shuffle(this.state.allProducts.slice(0, 6));
+  };
+
+  setCategory = id => {
+    this.state.category = id;
+  };
+
+  setProduct = data => {
+    this.state.product = data;
   };
 
   addToCart = product => {
@@ -66,44 +106,6 @@ class Product {
       this.state.cart = this.state.cart.map(x =>
         x.product.id === id ? {...x, quantity: quantity} : x,
       );
-    }
-  };
-
-  getCategories = async () => {
-    this.state.categories = categories;
-  };
-
-  getProducts = async () => {
-    this.state.products = products;
-    this.state.allProducts = products;
-  };
-
-  getProductsByCategories = async id => {
-    this.state.products = this.state.allProducts.filter(x => x.category === id);
-  };
-
-  createOrder = async () => {
-    const data = [];
-
-    this.state.cart.map(x => {
-      data.push([x.product.product_id, x.quantity]);
-    });
-
-    console.log(data);
-
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const res = await axios.post(`${BASE_URL}/createorder`, data, config);
-
-      console.log(res);
-
-      return res;
-    } catch (err) {
-      console.log(err);
     }
   };
 }

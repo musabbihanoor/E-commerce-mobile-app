@@ -14,12 +14,12 @@ import {Header} from '../components/Header';
 import {Categories} from '../components/Categories';
 import {ProductCarousel} from '../components/ProductCarousel';
 import {ProductSlider} from '../components/ProductSlider';
+import {ProductGrid} from '../components/ProductGrid';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles';
-import ProductGrid from '../components/ProductGrid';
 
 const Dashboard = ({navigation}) => {
   const [searching, setSearching] = useState(false);

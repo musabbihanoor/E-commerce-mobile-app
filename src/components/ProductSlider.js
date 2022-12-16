@@ -5,27 +5,13 @@ import styles from '../styles';
 import {ProductStore} from '../store/product';
 
 export const ProductSlider = ({navigation}) => {
-  const {
-    state: {allProducts},
-    setProduct,
-  } = ProductStore;
+  const {setProduct, getRandomProducts} = ProductStore;
 
   const [data, setData] = useState([]);
 
-  const shuffle = a => {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = a[i];
-      a[i] = a[j];
-      a[j] = x;
-    }
-    return a;
-  };
-
   useEffect(() => {
-    setData(shuffle(allProducts.slice(0, 6)));
-  }, [allProducts]);
+    setData(getRandomProducts());
+  }, []);
 
   return (
     <ScrollView horizontal={true} style={styles.productSlider}>
