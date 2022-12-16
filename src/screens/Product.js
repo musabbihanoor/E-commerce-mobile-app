@@ -6,15 +6,20 @@ import {
   View,
   Pressable,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel-v4';
 
-// import Header from '../components/Header';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faHeart} from '@fortawesome/free-regular-svg-icons';
+import {
+  faHeart as faHeartFilled,
+  faCartShopping,
+} from '@fortawesome/free-solid-svg-icons';
 
 import {ProductStore} from '../store/product';
 import {observer} from 'mobx-react';
-
-import Svg, {Path} from 'react-native-svg';
+import styles from '../styles';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -25,6 +30,7 @@ export const Product = observer(() => {
   } = ProductStore;
 
   const [activeSlide, setActiveSlide] = useState(0);
+  const [liked, setLiked] = useState(false);
 
   const renderItem = ({item}) => {
     return (
@@ -62,62 +68,76 @@ export const Product = observer(() => {
   };
 
   return (
-    <ScrollView>
-      {/* <Header heading="Product" /> */}
+    <View>
+      <ScrollView>
+        {/* <Header heading="Product" /> */}
 
-      <Carousel
-        data={product.imgs}
-        renderItem={renderItem}
-        sliderWidth={screenWidth}
-        sliderHeight={screenWidth}
-        itemWidth={screenWidth}
-        layout={'tinder'}
-        onSnapToItem={index => setActiveSlide(index)}
-      />
-      <PaginationView />
+        <Carousel
+          data={product.imgs}
+          renderItem={renderItem}
+          sliderWidth={screenWidth}
+          sliderHeight={screenWidth}
+          itemWidth={screenWidth}
+          layout={'tinder'}
+          onSnapToItem={index => setActiveSlide(index)}
+        />
+        <PaginationView />
 
-      <Pressable
-        onPress={() => {
-          addToCart(product);
-        }}
-        style={{
-          width: 50,
-          height: 50,
-          padding: 10,
-          backgroundColor: '#ccc',
-          borderRadius: 50,
-          top: -20,
-          left: 280,
-        }}>
-        <Svg height="100%" width="100%" viewBox="0 0 576 512">
-          <Path
-            fill="#fff"
-            d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-          />
-        </Svg>
-      </Pressable>
-      <View style={{paddingHorizontal: 20}}>
-        <View
+        <Pressable
+          onPress={() => {
+            setLiked(!liked);
+          }}
           style={{
-            flexDirection: 'row',
-            alignItems: 'flex-end',
-            justifyContent: 'space-between',
-            marginBottom: 20,
+            width: 50,
+            height: 50,
+            padding: 10,
+            backgroundColor: '#fff',
+            borderWidth: 1,
+            borderColor: '#ccc',
+            borderRadius: 50,
+            top: -50,
+            left: 280,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}>
-          <View>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 24,
-                fontFamily: 'Poppins-Regular',
-              }}>
-              {product.name}
+          <FontAwesomeIcon
+            style={{color: 'red'}}
+            icon={liked ? faHeartFilled : faHeart}
+          />
+        </Pressable>
+        <View style={{paddingHorizontal: 20}}>
+          <View
+            style={{
+              marginBottom: 20,
+            }}>
+            <View>
+              <Text
+                style={{
+                  color: '#000',
+                  fontSize: 24,
+                  fontFamily: 'Poppins-Regular',
+                }}>
+                {product.name}
+              </Text>
+            </View>
+            <Text style={{fontFamily: 'Poppins-Light', alignSelf: 'flex-end'}}>
+              ${product.price}
             </Text>
           </View>
-          <Text style={{fontFamily: 'Poppins-Light'}}>${product.price}</Text>
+          <Text style={{fontFamily: 'Poppins-Light', paddingBottom: 100}}>
+            {product.description}
+          </Text>
         </View>
-        <Text style={{fontFamily: 'Poppins-Light'}}>{product.description}</Text>
-      </View>
-    </ScrollView>
+      </ScrollView>
+      <TouchableOpacity
+        style={styles.productBtn}
+        onClick={() => addToCart(product)}>
+        <FontAwesomeIcon
+          style={{color: '#fff', marginRight: 10}}
+          icon={faCartShopping}
+        />
+        <Text style={styles.productText}>Add to cart</Text>
+      </TouchableOpacity>
+    </View>
   );
 });

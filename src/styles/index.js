@@ -61,11 +61,12 @@ const styles = StyleSheet.create({
   },
 
   headerText: {
-    color: btnTextPrimary,
+    color: '#000',
     fontSize: 20,
-    fontWeight: '700',
     marginLeft: 30,
     flex: 1,
+    fontFamily: 'Poppins-Bold',
+    marginTop: 5,
   },
 
   product: {
@@ -103,27 +104,91 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
 
-  productGrid: {
+  productSlider: {
     flexDirection: 'row',
   },
 
-  gridItem: {
+  productGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    margin: 20,
+    marginLeft: 10,
+  },
+
+  sliderItem: {
     width: 150,
     marginLeft: 10,
   },
 
-  gridImg: {
+  sliderImg: {
     width: 150,
     height: 150,
     resizeMode: 'cover',
   },
 
-  gridText: {
+  sliderText: {
     fontFamily: 'Poppins-SemiBold',
   },
 
-  gridPrice: {
+  sliderPrice: {
     fontFamily: 'Poppins-Regular',
+  },
+
+  productBtn: {
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: '#21282F',
+    padding: 20,
+    width: 200,
+    alignSelf: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopLeftRadius: 100,
+  },
+
+  productText: {
+    color: '#fff',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 16,
+  },
+
+  searchBar: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+  },
+
+  searchText: {
+    fontFamily: 'Poppins-Regular',
+    margin: 20,
+    marginBottom: 0,
+    fontSize: 16,
+  },
+
+  searchInput: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    flex: 1,
+    backgroundColor: 'transparent',
+    borderRadius: 30,
+    paddingHorizontal: 20,
+  },
+
+  searchInputFocused: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    flex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    paddingHorizontal: 20,
+  },
+
+  searchBtn: {
+    position: 'absolute',
+    right: 0,
+    paddingVertical: 15,
+    paddingHorizontal: 25,
   },
 });
 

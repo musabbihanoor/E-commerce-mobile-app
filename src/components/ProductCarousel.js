@@ -83,6 +83,17 @@ export const ProductCarousel = observer(({navigation}) => {
               }}>
               {item.name}
             </Text>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Regular',
+                fontSize: 14,
+                color: '#fff',
+                textShadowColor: 'rgba(0, 0, 0, 0.25)',
+                textShadowOffset: {width: -1, height: 1},
+                textShadowRadius: 10,
+              }}>
+              {item.description.slice(0, 200)}...
+            </Text>
           </View>
 
           <View

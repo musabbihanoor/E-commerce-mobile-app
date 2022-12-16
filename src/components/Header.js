@@ -26,7 +26,7 @@ export const Header = observer(({heading, navigation, hideCart}) => {
           />
         </Svg>
       </Pressable>
-      <Text style={styles.headerText}>{heading}</Text>
+      <Text style={styles.headerText}>Habittt</Text>
       {/* {!hideCart && (
         <Pressable
           onPress={() => navigation.navigate('Cart')}
