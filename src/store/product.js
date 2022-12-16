@@ -51,9 +51,7 @@ class Product {
   };
 
   addToCart = product => {
-    if (
-      this.state.cart.find(x => x.product.product_id === product.product_id)
-    ) {
+    if (this.state.cart.find(x => x.product.id === product.id)) {
       this.createToast('Already in cart');
     } else {
       this.state.cart = [...this.state.cart, {product: product, quantity: 1}];
@@ -61,14 +59,12 @@ class Product {
     }
   };
 
-  updateCartQuantity = (product_id, quantity) => {
+  updateCartQuantity = (id, quantity) => {
     if (quantity === 0) {
-      this.state.cart = this.state.cart.filter(
-        x => x.product.product_id !== product_id,
-      );
+      this.state.cart = this.state.cart.filter(x => x.product.id !== id);
     } else {
       this.state.cart = this.state.cart.map(x =>
-        x.product.product_id === product_id ? {...x, quantity: quantity} : x,
+        x.product.id === id ? {...x, quantity: quantity} : x,
       );
     }
   };

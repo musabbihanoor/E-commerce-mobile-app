@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import Dashboard from '../screens/Dashboard';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {AuthStore} from '../store/auth';
+import {ProductStore} from '../store/product';
 import {observer} from 'mobx-react';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -49,11 +50,12 @@ const CartTabs = () => {
       initialRouteName="cart">
       <Stack.Screen name="cart" component={Cart} />
       <Stack.Screen name="Wishlist" component={Product} />
+      <Stack.Screen name="Product" component={Product} />
     </CartStack.Navigator>
   );
 };
 
-const Tabs = () => {
+const Tabs = observer(() => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -70,7 +72,16 @@ const Tabs = () => {
         name="Cart"
         component={CartTabs}
         options={{
-          tabBarIcon: ({focused}) => <FontAwesomeIcon icon={faCartShopping} />,
+          tabBarIcon: ({focused}) => (
+            <View style={{flexDirection: 'row'}}>
+              <FontAwesomeIcon icon={faCartShopping} />
+              {ProductStore.state.cart.length > 0 && (
+                <Text style={{color: 'red', marginTop: -10}}>
+                  {ProductStore.state.cart.length}
+                </Text>
+              )}
+            </View>
+          ),
         }}
       />
       <Tab.Screen
@@ -82,7 +93,7 @@ const Tabs = () => {
       />
     </Tab.Navigator>
   );
-};
+});
 
 export const Navigator = observer(() => {
   const {

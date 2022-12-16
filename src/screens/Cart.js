@@ -1,11 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView, Image, Button, Text, Pressable} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Image,
+  Text,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
 
 import {ProductStore} from '../store/product';
 import {AuthStore} from '../store/auth';
 import {observer} from 'mobx-react';
 
-import Svg, {Path} from 'react-native-svg';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faPlus, faMinus} from '@fortawesome/free-solid-svg-icons';
+import {faTrashCan} from '@fortawesome/free-regular-svg-icons';
+
+import {Header} from '../components/Header';
 import styles from '../styles';
 
 export const Cart = observer(({navigation}) => {
@@ -20,7 +31,7 @@ export const Cart = observer(({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <Pressable
           style={{width: 20, height: 20}}
           onPress={() => navigation.navigate('login')}>
@@ -32,28 +43,47 @@ export const Cart = observer(({navigation}) => {
           </Svg>
         </Pressable>
         <Text style={styles.headerText}>Cart</Text>
-      </View>
+      </View> */}
 
-      <ScrollView>
-        {cart.map((x, i) => (
-          <Item key={i} item={x} navigation={navigation} />
-        ))}
-      </ScrollView>
-      <Button
-        style={{bottom: '0'}}
-        title="Create Order"
-        onPress={() =>
-          AuthStore.state.isAuthenticated
-            ? createOrder()
-            : navigation.navigate('login')
-        }
-      />
+      <Header />
+
+      {cart.length > 0 ? (
+        <ScrollView>
+          {cart.map((x, i) => (
+            <Item key={i} item={x} navigation={navigation} />
+          ))}
+        </ScrollView>
+      ) : (
+        <Text
+          style={{
+            fontFamily: 'Poppins-Regular',
+            textAlign: 'center',
+            fontSize: 16,
+          }}>
+          Cart is empty
+        </Text>
+      )}
+
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#000',
+          padding: 15,
+          width: 200,
+          alignItems: 'center',
+          alignSelf: 'center',
+          borderRadius: 50,
+          marginBottom: 20,
+        }}>
+        <Text style={{color: '#fff', fontFamily: 'Poppins-Regular'}}>
+          Confirm Order
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 });
 
-const Item = ({item: {product, quantity}}) => {
-  const {updateCartQuantity} = ProductStore;
+const Item = ({item: {product, quantity}, navigation}) => {
+  const {updateCartQuantity, setProduct} = ProductStore;
 
   return (
     <View
@@ -66,25 +96,27 @@ const Item = ({item: {product, quantity}}) => {
         alignItems: 'center',
         marginBottom: 0,
       }}>
-      <Image
-        style={{width: 50, height: 50, borderRadius: 5}}
-        source={{
-          uri: product.product_image,
-        }}
-      />
+      <Pressable
+        onPress={() => {
+          setProduct(product);
+          navigation.navigate('Product');
+        }}>
+        <Image
+          style={{width: 50, height: 50, borderRadius: 5}}
+          source={{
+            uri: product.imgs[0],
+          }}
+        />
+      </Pressable>
       <View style={{flex: 1}}>
         <Text
           style={{
             marginLeft: 5,
-            fontSize: 20,
+            fontSize: 16,
             color: '#000',
-            fontWeight: '700',
+            fontFamily: 'Poppins-SemiBold',
           }}>
-          {product.product_name}
-        </Text>
-
-        <Text style={{marginLeft: 5, fontSize: 12, color: '#000'}}>
-          {product.product_description}
+          {product.name}
         </Text>
 
         <Text
@@ -92,12 +124,9 @@ const Item = ({item: {product, quantity}}) => {
             marginLeft: 5,
             fontSize: 14,
             color: '#000',
-            fontWeight: '700',
+            fontFamily: 'Poppins-Regular',
           }}>
-          {product.product_price * quantity
-            ? product.product_price * quantity
-            : ''}{' '}
-          PKR
+          {product.price * quantity ? product.price * quantity : ''} PKR
         </Text>
       </View>
 
@@ -105,6 +134,12 @@ const Item = ({item: {product, quantity}}) => {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
+          backgroundColor: '#fff',
+          paddingVertical: 5,
+          paddingHorizontal: 10,
+          borderRadius: 30,
+          borderColor: '#eee',
+          borderWidth: 1,
         }}>
         <Pressable
           style={{
@@ -112,16 +147,17 @@ const Item = ({item: {product, quantity}}) => {
             height: 20,
           }}
           onPress={() => {
-            updateCartQuantity(product.product_id, quantity + 1);
+            updateCartQuantity(product.id, quantity + 1);
           }}>
-          <Svg height="100%" width="100%" viewBox="0 0 448 512">
-            <Path
-              fill="black"
-              d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-            />
-          </Svg>
+          <FontAwesomeIcon icon={faPlus} />
         </Pressable>
-        <Text style={{color: 'black', fontSize: 20, marginHorizontal: 10}}>
+        <Text
+          style={{
+            color: 'black',
+            fontSize: 20,
+            marginTop: -5,
+            marginHorizontal: 10,
+          }}>
           {quantity}
         </Text>
         <Pressable
@@ -130,14 +166,13 @@ const Item = ({item: {product, quantity}}) => {
             height: 20,
           }}
           onPress={() => {
-            updateCartQuantity(product.product_id, quantity - 1);
+            updateCartQuantity(product.id, quantity - 1);
           }}>
-          <Svg height="100%" width="100%" viewBox="0 0 448 512">
-            <Path
-              fill="black"
-              d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"
-            />
-          </Svg>
+          {quantity === 1 ? (
+            <FontAwesomeIcon color="red" icon={faTrashCan} />
+          ) : (
+            <FontAwesomeIcon icon={faMinus} />
+          )}
         </Pressable>
       </View>
     </View>

@@ -131,7 +131,7 @@ export const Product = observer(() => {
       </ScrollView>
       <TouchableOpacity
         style={styles.productBtn}
-        onClick={() => addToCart(product)}>
+        onPress={() => addToCart(product)}>
         <FontAwesomeIcon
           style={{color: '#fff', marginRight: 10}}
           icon={faCartShopping}
