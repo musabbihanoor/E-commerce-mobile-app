@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: 'Poppins-Bold',
     marginTop: 5,
+    textAlign: 'center',
   },
 
   product: {
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
   },
 
-  btnMain: {
+  primaryBtn: {
     backgroundColor: '#000',
     padding: 15,
     width: 200,
@@ -199,6 +200,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 50,
     marginBottom: 20,
+  },
+
+  secondaryBtn: {
+    borderColor: '#000',
+    borderWidth: 2,
+    padding: 10,
+    width: 200,
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginVertical: 20,
   },
 
   cartItem: {

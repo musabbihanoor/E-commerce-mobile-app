@@ -7,6 +7,8 @@ import {BASE_URL} from './url';
 
 import {categories} from '../data/categories';
 import {products} from '../data/products';
+import {cart} from '../data/cart';
+import {wishlist} from '../data/wishlist';
 
 class Product {
   state = {
@@ -16,7 +18,8 @@ class Product {
     product: {},
     categories: [],
     category: null,
-    cart: [],
+    cart: cart,
+    wishlist: wishlist,
   };
 
   constructor() {

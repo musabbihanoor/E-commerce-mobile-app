@@ -1,20 +1,21 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import Dashboard from '../screens/Dashboard';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 import {Product} from '../screens/Product';
 import {Cart} from '../screens/Cart';
+import {Wishlist} from '../screens/Wishlist';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faHome, faUser, faHeart} from '@fortawesome/free-solid-svg-icons';
+
 import {
-  faHome,
-  faCartShopping,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+  faUser as faUserEmpty,
+  faHeart as faHeartEmpty,
+} from '@fortawesome/free-regular-svg-icons';
 
 import {AuthStore} from '../store/auth';
-import {ProductStore} from '../store/product';
 import {observer} from 'mobx-react';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -37,6 +38,7 @@ const HomeTabs = () => {
       initialRouteName="Dashboard">
       <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="Product" component={Product} />
+      <Stack.Screen name="Cart" component={Cart} />
     </HomeStack.Navigator>
   );
 };
@@ -47,15 +49,15 @@ const CartTabs = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="cart">
+      initialRouteName="Wishlist">
       <Stack.Screen name="cart" component={Cart} />
-      <Stack.Screen name="Wishlist" component={Product} />
+      <Stack.Screen name="Wishlist" component={Wishlist} />
       <Stack.Screen name="Product" component={Product} />
     </CartStack.Navigator>
   );
 };
 
-const Tabs = observer(() => {
+const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -65,22 +67,26 @@ const Tabs = observer(() => {
         name="Home"
         component={HomeTabs}
         options={{
-          tabBarIcon: ({focused}) => <FontAwesomeIcon icon={faHome} />,
+          tabBarIcon: ({focused}) => (
+            <>
+              {focused ? (
+                <FontAwesomeIcon icon={faHome} />
+              ) : (
+                <Image
+                  style={{width: 20, height: 20}}
+                  source={require('../assets/icons/home.png')}
+                />
+              )}
+            </>
+          ),
         }}
       />
       <Tab.Screen
-        name="Cart"
+        name="Wishlist"
         component={CartTabs}
         options={{
           tabBarIcon: ({focused}) => (
-            <View style={{flexDirection: 'row'}}>
-              <FontAwesomeIcon icon={faCartShopping} />
-              {ProductStore.state.cart.length > 0 && (
-                <Text style={{color: 'red', marginTop: -10}}>
-                  {ProductStore.state.cart.length}
-                </Text>
-              )}
-            </View>
+            <FontAwesomeIcon icon={focused ? faHeart : faHeartEmpty} />
           ),
         }}
       />
@@ -88,12 +94,14 @@ const Tabs = observer(() => {
         name="Profile"
         component={Cart}
         options={{
-          tabBarIcon: ({focused}) => <FontAwesomeIcon icon={faUser} />,
+          tabBarIcon: ({focused}) => (
+            <FontAwesomeIcon icon={focused ? faUser : faUserEmpty} />
+          ),
         }}
       />
     </Tab.Navigator>
   );
-});
+};
 
 export const Navigator = observer(() => {
   const {

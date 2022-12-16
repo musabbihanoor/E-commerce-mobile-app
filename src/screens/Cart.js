@@ -29,7 +29,7 @@ export const Cart = observer(({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <Header />
+      <Header heading="Cart" />
 
       {cart.length > 0 ? (
         <>
@@ -38,32 +38,55 @@ export const Cart = observer(({navigation}) => {
               <Item key={i} item={x} navigation={navigation} />
             ))}
           </ScrollView>
-          <TouchableOpacity style={styles.btnMain}>
+          <TouchableOpacity style={styles.primaryBtn}>
             <Text style={{color: '#fff', fontFamily: 'Poppins-Regular'}}>
               Confirm Order
             </Text>
           </TouchableOpacity>
         </>
       ) : (
-        <>
-          <View style={{flex: 1}}>
+        <View style={{justifyContent: 'center', flex: 1}}>
+          <Image
+            style={{
+              width: 100,
+              height: 100,
+              resizeMode: 'contain',
+              alignSelf: 'center',
+              marginBottom: 20,
+            }}
+            source={require('../assets/icons/empty-cart.png')}
+          />
+          <Text
+            style={{
+              fontFamily: 'Poppins-Bold',
+              textAlign: 'center',
+              fontSize: 26,
+              color: '#000',
+            }}>
+            Your cart is empty
+          </Text>
+          <Text
+            style={{
+              fontFamily: 'Poppins-Regular',
+              textAlign: 'center',
+              fontSize: 12,
+              color: '#000',
+            }}>
+            Your shopping bag has abandonment issues
+          </Text>
+          <TouchableOpacity
+            style={styles.secondaryBtn}
+            onPress={() => navigation.navigate('Dashboard')}>
             <Text
               style={{
-                fontFamily: 'Poppins-Regular',
-                textAlign: 'center',
+                color: '#000',
                 fontSize: 16,
+                fontFamily: 'Poppins-SemiBold',
               }}>
-              Looks like cart is empty!
-            </Text>
-          </View>
-          <TouchableOpacity
-            style={styles.btnMain}
-            onPress={() => navigation.navigate('Home')}>
-            <Text style={{color: '#fff', fontFamily: 'Poppins-Regular'}}>
               Continue shopping
             </Text>
           </TouchableOpacity>
-        </>
+        </View>
       )}
     </View>
   );
@@ -90,7 +113,7 @@ const Item = ({item: {product, quantity}, navigation}) => {
         <Text style={styles.cartName}>{product.name}</Text>
 
         <Text style={styles.cartPrice}>
-          {product.price * quantity ? product.price * quantity : ''} PKR
+          ${product.price * quantity ? product.price * quantity : ''}
         </Text>
       </View>
 
