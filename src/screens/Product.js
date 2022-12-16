@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ScrollView,
   Image,
@@ -25,12 +25,17 @@ const {width: screenWidth} = Dimensions.get('window');
 
 export const Product = observer(() => {
   const {
-    state: {product},
+    state: {product, wishlist},
     addToCart,
+    addToWishlist,
   } = ProductStore;
 
   const [activeSlide, setActiveSlide] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    setLiked(wishlist.find(x => x.id === product.id));
+  }, [wishlist]);
 
   const renderItem = ({item}) => {
     return (
@@ -84,9 +89,7 @@ export const Product = observer(() => {
         <PaginationView />
 
         <Pressable
-          onPress={() => {
-            setLiked(!liked);
-          }}
+          onPress={() => addToWishlist(product)}
           style={{
             width: 50,
             height: 50,
@@ -95,7 +98,7 @@ export const Product = observer(() => {
             borderWidth: 1,
             borderColor: '#ccc',
             borderRadius: 50,
-            top: -50,
+            top: product.imgs.length > 1 ? -50 : -20,
             left: 280,
             justifyContent: 'center',
             alignItems: 'center',

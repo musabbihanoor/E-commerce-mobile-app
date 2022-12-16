@@ -31,6 +31,8 @@ class Product {
       getSearchedProducts: action,
       getRandomProducts: action,
       addToCart: action,
+      addToWishlist: action,
+      removeFromWishlist: action,
 
       setCategory: action,
       setProduct: action,
@@ -110,6 +112,19 @@ class Product {
         x.product.id === id ? {...x, quantity: quantity} : x,
       );
     }
+  };
+
+  addToWishlist = product => {
+    if (this.state.wishlist.find(x => x.id === product.id)) {
+      this.createToast('Already in wishlist');
+    } else {
+      this.state.wishlist = [...this.state.wishlist, product];
+      this.createToast('Added to wishlist');
+    }
+  };
+
+  removeFromWishlist = id => {
+    this.state.wishlist = this.state.wishlist.filter(x => x.id !== id);
   };
 }
 

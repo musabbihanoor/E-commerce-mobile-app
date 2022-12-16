@@ -23,13 +23,9 @@ export const Cart = observer(({navigation}) => {
     state: {cart},
   } = ProductStore;
 
-  useEffect(() => {
-    console.log(cart);
-  }, []);
-
   return (
     <View style={{flex: 1}}>
-      <Header heading="Cart" />
+      <Header heading="Cart" navigation={navigation} />
 
       {cart.length > 0 ? (
         <>
@@ -37,8 +33,11 @@ export const Cart = observer(({navigation}) => {
             {cart.map((x, i) => (
               <Item key={i} item={x} navigation={navigation} />
             ))}
+            <View style={{height: 80}}></View>
           </ScrollView>
-          <TouchableOpacity style={styles.primaryBtn}>
+
+          <TouchableOpacity
+            style={{...styles.primaryBtn, bottom: 0, position: 'absolute'}}>
             <Text style={{color: '#fff', fontFamily: 'Poppins-Regular'}}>
               Confirm Order
             </Text>
@@ -63,7 +62,7 @@ export const Cart = observer(({navigation}) => {
               fontSize: 26,
               color: '#000',
             }}>
-            Your cart is empty
+            Your Cart is Empty
           </Text>
           <Text
             style={{
@@ -103,7 +102,7 @@ const Item = ({item: {product, quantity}, navigation}) => {
           navigation.navigate('Product');
         }}>
         <Image
-          style={{width: 50, height: 50, borderRadius: 5}}
+          style={{width: 100, height: 150, borderRadius: 5}}
           source={{
             uri: product.imgs[0],
           }}

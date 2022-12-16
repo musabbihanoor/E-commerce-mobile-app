@@ -218,7 +218,6 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 5,
     flexDirection: 'row',
-    alignItems: 'center',
     marginBottom: 0,
   },
 
@@ -236,6 +235,30 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
   },
 
+  wishlistItem: {
+    borderColor: '#ccc',
+    borderBottomWidth: 1,
+    margin: 10,
+    padding: 5,
+    flexDirection: 'row',
+    marginBottom: 0,
+  },
+
+  wishlistName: {
+    marginLeft: 5,
+    fontSize: 16,
+    color: '#000',
+    fontFamily: 'Poppins-SemiBold',
+    width: '80%',
+  },
+
+  wishlistPrice: {
+    marginLeft: 5,
+    fontSize: 14,
+    color: '#000',
+    fontFamily: 'Poppins-Regular',
+  },
+
   cartQuantity: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -245,6 +268,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderColor: '#eee',
     borderWidth: 1,
+    alignSelf: 'flex-end',
   },
 });
 
