@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import Dashboard from '../screens/Dashboard';
 import Login from '../screens/Login';
@@ -7,6 +7,8 @@ import {Product} from '../screens/Product';
 import {Cart} from '../screens/Cart';
 import {Wishlist} from '../screens/Wishlist';
 import Tutorial from '../screens/Onboarding';
+import {Header} from '../components/Header';
+import Menu from '../components/Menu';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome, faUser, faHeart} from '@fortawesome/free-solid-svg-icons';
@@ -24,11 +26,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import SideMenu from '@chakrahq/react-native-side-menu';
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const menu = <Menu />;
 
 const HomeTabs = () => {
   return (
@@ -59,48 +65,53 @@ const CartTabs = () => {
 };
 
 const Tabs = () => {
+  const [openMenu, setOpenMenu] = useState(true);
+
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Tab.Screen
-        name="Home"
-        component={HomeTabs}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <>
-              {focused ? (
-                <FontAwesomeIcon icon={faHome} />
-              ) : (
-                <Image
-                  style={{width: 20, height: 20}}
-                  source={require('../assets/icons/home.png')}
-                />
-              )}
-            </>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Wishlist"
-        component={CartTabs}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <FontAwesomeIcon icon={focused ? faHeart : faHeartEmpty} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Cart}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <FontAwesomeIcon icon={focused ? faUser : faUserEmpty} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    <SideMenu menu={menu} isOpen={openMenu}>
+      <Header setOpenMenu={setOpenMenu} />
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Tab.Screen
+          name="Home"
+          component={HomeTabs}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <>
+                {focused ? (
+                  <FontAwesomeIcon icon={faHome} />
+                ) : (
+                  <Image
+                    style={{width: 20, height: 20}}
+                    source={require('../assets/icons/home.png')}
+                  />
+                )}
+              </>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Wishlist"
+          component={CartTabs}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <FontAwesomeIcon icon={focused ? faHeart : faHeartEmpty} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Cart}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <FontAwesomeIcon icon={focused ? faUser : faUserEmpty} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </SideMenu>
   );
 };
 
@@ -115,7 +126,7 @@ export const Navigator = observer(() => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Onboarding">
+        initialRouteName="Main">
         <Stack.Screen name="Onboarding" component={Tutorial} />
         <Stack.Screen name="Main" component={Tabs} />
         <Stack.Screen name="signup" component={Signup} />

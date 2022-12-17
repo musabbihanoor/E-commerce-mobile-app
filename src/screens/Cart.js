@@ -25,7 +25,7 @@ export const Cart = observer(({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <Header heading="Cart" navigation={navigation} />
+      {/* <Header heading="Cart" navigation={navigation} /> */}
 
       {cart.length > 0 ? (
         <>

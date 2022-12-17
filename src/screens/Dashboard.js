@@ -46,7 +46,7 @@ const Dashboard = ({navigation}) => {
 
   return (
     <ScrollView>
-      <Header heading="" navigation={navigation} />
+      {/* <Header heading="" navigation={navigation} /> */}
 
       <View style={styles.searchBar}>
         <TextInput

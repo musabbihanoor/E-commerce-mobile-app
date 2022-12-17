@@ -25,7 +25,7 @@ export const Wishlist = observer(({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <Header heading="Cart" navigation={navigation} />
+      {/* <Header heading="Cart" navigation={navigation} /> */}
 
       {wishlist.length > 0 ? (
         <ScrollView>
