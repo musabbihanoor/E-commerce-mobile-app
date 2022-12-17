@@ -8,99 +8,55 @@ import {
   StyleSheet,
 } from 'react-native';
 import Input from '../components/Input';
-import MapView from 'react-native-maps';
 
 import {PrimaryColor, SecondaryColor} from '../styles/theme';
 import styles from '../styles';
-import GetLocation from 'react-native-get-location';
+import {faUser, faLock, faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import Svg, {Path} from 'react-native-svg';
 
 import {AuthStore} from '../store/auth';
 
-const styles2 = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    //the container will fill the whole screen.
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-    height: '50%',
-  },
-});
-
 const Signup = ({navigation}) => {
-  const [customer_firstname, setName] = useState('');
-  const [customer_email, setEmail] = useState('');
-  const [customer_password, setPassword] = useState('');
-  const [order_map_lat, setlat] = useState(0);
-  const [order_map_lon, setlot] = useState(0);
-
-  useEffect(() => {
-    GetLocation.getCurrentPosition({
-      enableHighAccuracy: true,
-      timeout: 15000,
-    })
-      .then(location => {
-        console.log(location);
-        setlat(location.latitude);
-        setlot(location.longitude);
-      })
-      .catch(error => {
-        const {code, message} = error;
-        console.warn(code, message);
-      });
-  }, []);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const onSubmit = async () => {
     AuthStore.register({
-      customer_email: customer_email,
-      customer_password: customer_password,
-      customer_firstname: customer_firstname,
-      order_map_lat: order_map_lat,
-      order_map_lon: order_map_lon,
-    }).then(res => {
-      res === 1 && navigation.navigate('Dashboard');
+      email: email,
+      password: password,
+      name: name,
     });
+    navigation.navigate('Main');
   };
 
   return (
-    <View style={styles2.container}>
-      <MapView
-        style={styles2.map}
-        //specify our coordinates.
-        initialRegion={{
-          latitude: order_map_lat,
-          longitude: order_map_lon,
-          latitudeDelta: 0.04,
-          longitudeDelta: 0.05,
-        }}
-      />
-      <Image
-        source={{
-          uri: 'https://i.pinimg.com/originals/e9/e2/78/e9e2787d0cb55d570fe1c76843506759.jpg',
-        }}
-        style={{width: 100, height: 100}}
-      />
-      <View style={{...styles.form, paddingHorizontal: 30}}>
-        <Text style={styles.label}>Name:</Text>
+    <View style={styles.container}>
+      <Svg height="30%" width="50%" viewBox="0 0 448 512">
+        <Path
+          fill="#21282F"
+          d="M271.5 432l-68 32C88.5 453.7 0 392.5 0 318.2c0-71.5 82.5-131 191.7-144.3v43c-71.5 12.5-124 53-124 101.3 0 51 58.5 93.3 135.7 103v-340l68-33.2v384zM448 291l-131.3-28.5 36.8-20.7c-19.5-11.5-43.5-20-70-24.8v-43c46.2 5.5 87.7 19.5 120.3 39.3l35-19.8L448 291z"
+        />
+      </Svg>
+      <View style={{...styles.form}}>
         <Input
-          text={customer_firstname}
+          text={name}
           setText={setName}
           placeholder="Enter name"
+          icon={faUser}
         />
-        <Text style={styles.label}>Email:</Text>
         <Input
-          text={customer_email}
+          text={email}
           setText={setEmail}
           placeholder="Enter email"
+          icon={faEnvelope}
         />
-        <Text style={styles.label}>Password:</Text>
         <Input
           password={true}
-          text={customer_password}
+          text={password}
           setText={setPassword}
           placeholder="Enter password"
+          icon={faLock}
         />
 
         <Pressable
@@ -117,13 +73,13 @@ const Signup = ({navigation}) => {
         </Pressable>
 
         <TouchableOpacity
-          style={styles.btnPrimary}
+          style={styles.primaryBtn}
           onPress={() => {
             // Register();
             // navigation.navigate('Dashboard', {parama: [], auth: true});
             onSubmit();
           }}>
-          <Text style={styles.btnTextPrimary}>Submit</Text>
+          <Text style={{color: '#fff'}}>Submit</Text>
         </TouchableOpacity>
       </View>
     </View>

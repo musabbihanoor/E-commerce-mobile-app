@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://apiguzell.pagekite.me';
+export const BASE_URL = '';

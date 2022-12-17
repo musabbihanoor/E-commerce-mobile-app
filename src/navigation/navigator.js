@@ -6,6 +6,7 @@ import Signup from '../screens/Signup';
 import {Product} from '../screens/Product';
 import {Cart} from '../screens/Cart';
 import {Wishlist} from '../screens/Wishlist';
+import Tutorial from '../screens/Onboarding';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome, faUser, faHeart} from '@fortawesome/free-solid-svg-icons';
@@ -114,7 +115,8 @@ export const Navigator = observer(() => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Main">
+        initialRouteName="Onboarding">
+        <Stack.Screen name="Onboarding" component={Tutorial} />
         <Stack.Screen name="Main" component={Tabs} />
         <Stack.Screen name="signup" component={Signup} />
         <Stack.Screen name="login" component={Login} />

@@ -14,76 +14,40 @@ import styles from '../styles';
 import {AuthStore} from '../store/auth';
 import {PrimaryColor, SecondaryColor} from '../styles/theme';
 
-const Login = ({navigation}) => {
-  // const Toast = ({visible, message}) => {
-  //   if (visible) {
-  //     ToastAndroid.showWithGravityAndOffset(
-  //       message,
-  //       ToastAndroid.LONG,
-  //       ToastAndroid.BOTTOM,
-  //       25,
-  //       50,
-  //     );
-  //     return null;
-  //   }
-  //   return null;
-  // };
+import {faUser, faLock} from '@fortawesome/free-solid-svg-icons';
+import Svg, {Path} from 'react-native-svg';
 
+const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  //   const login = async () => {
-  //     fetch('http://10.0.2.2:8000/login', {
-  //   method: 'POST',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({
-  //     "email":email,
-  //     "password":password,
-
-  //   })
-
-  // }).then(response => {
-  //   console.log(response)
-  //   if (response.ok){
-  //   navigation.navigate("Dashboard",{
-  //     parama:[],
-  //     auth:true,
-  //   })}else{
-  //     <Toast visible={true} message="Example" />
-  //   }
-  // }).catch(err =>console.error(err));
-
-  //     this.state.isAuthenticated = true;
-
-  //   };
-
   const onSubmit = async () => {
-    AuthStore.login({email: email, password: password}).then(res => {
-      res === 1 && navigation.navigate('Dashboard');
-    });
+    AuthStore.login({email: email, password: password});
+    navigation.navigate('Main');
   };
 
   return (
     <View style={styles.container}>
-      <Image
-        source={{
-          uri: 'https://i.pinimg.com/originals/e9/e2/78/e9e2787d0cb55d570fe1c76843506759.jpg',
-        }}
-        style={{width: 100, height: 100}}
-      />
+      <Svg height="30%" width="50%" viewBox="0 0 448 512">
+        <Path
+          fill="#21282F"
+          d="M271.5 432l-68 32C88.5 453.7 0 392.5 0 318.2c0-71.5 82.5-131 191.7-144.3v43c-71.5 12.5-124 53-124 101.3 0 51 58.5 93.3 135.7 103v-340l68-33.2v384zM448 291l-131.3-28.5 36.8-20.7c-19.5-11.5-43.5-20-70-24.8v-43c46.2 5.5 87.7 19.5 120.3 39.3l35-19.8L448 291z"
+        />
+      </Svg>
       <View style={styles.form}>
-        <Text style={styles.label}>Email:</Text>
-        <Input text={email} setText={setEmail} placeholder="Enter email" />
-        <Text style={styles.label}>Password:</Text>
+        <Input
+          text={email}
+          setText={setEmail}
+          icon={faUser}
+          placeholder="Enter email"
+        />
 
         <Input
           text={password}
           setText={setPassword}
           placeholder="Enter password"
           password={true}
+          icon={faLock}
         />
 
         <Pressable
@@ -99,8 +63,8 @@ const Login = ({navigation}) => {
           </Text>
         </Pressable>
 
-        <TouchableOpacity style={styles.btnPrimary} onPress={() => onSubmit()}>
-          <Text style={styles.btnTextPrimary}>Submit</Text>
+        <TouchableOpacity style={styles.primaryBtn} onPress={() => onSubmit()}>
+          <Text style={{...styles.btnTextPrimary, color: '#fff'}}>Submit</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -27,17 +27,15 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    borderColor: '#ccc',
-    borderWidth: 2,
     borderRadius: 5,
-    padding: 5,
+    padding: 10,
+    flex: 1,
   },
 
   inputFocused: {
-    borderColor: SecondaryColor,
-    borderWidth: 2,
     borderRadius: 5,
     padding: 10,
+    flex: 1,
   },
 
   btnPrimary: {

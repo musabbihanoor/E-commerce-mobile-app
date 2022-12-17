@@ -9,9 +9,6 @@ import {observer} from 'mobx-react';
 
 import {AuthStore} from '../store/auth';
 
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {fa} from '@fortawesome/free-regular-svg-icons';
-
 export const Header = observer(({heading, navigation, hideCart}) => {
   const {
     state: {cart},
