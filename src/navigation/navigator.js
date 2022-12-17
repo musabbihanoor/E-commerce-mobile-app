@@ -27,6 +27,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNavigationContainerRef} from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -34,7 +35,9 @@ const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const menu = <Menu />;
+const navigationRef = createNavigationContainerRef();
+
+const menu = <Menu navigationRef={navigationRef} />;
 
 const HomeTabs = () => {
   return (
@@ -42,7 +45,7 @@ const HomeTabs = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Category">
+      initialRouteName="Dashboard">
       <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="Product" component={Product} />
       <Stack.Screen name="Cart" component={Cart} />
@@ -58,18 +61,19 @@ const CartTabs = () => {
         headerShown: false,
       }}
       initialRouteName="Wishlist">
-      <Stack.Screen name="cart" component={Cart} />
+      <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="Wishlist" component={Wishlist} />
       <Stack.Screen name="Product" component={Product} />
+      <Stack.Screen name="Category" component={Category} />
     </CartStack.Navigator>
   );
 };
 
-const Tabs = () => {
+const Tabs = ({navigation}) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <SideMenu menu={menu} isOpen={openMenu}>
+    <SideMenu menu={menu} isOpen={openMenu} autoClosing={true}>
       <Header setOpenMenu={setOpenMenu} />
       <Tab.Navigator
         screenOptions={{
@@ -152,7 +156,7 @@ export const Navigator = observer(() => {
   } = AuthStore;
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
