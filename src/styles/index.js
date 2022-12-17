@@ -153,6 +153,10 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: 'row',
     paddingHorizontal: 20,
+    position: 'absolute',
+    zIndex: 111,
+    background: 'transparent',
+    top: 20,
   },
 
   searchText: {
@@ -166,7 +170,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: '#eee',
     borderRadius: 30,
     paddingHorizontal: 20,
   },

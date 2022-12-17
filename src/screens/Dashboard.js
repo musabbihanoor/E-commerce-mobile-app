@@ -45,9 +45,7 @@ const Dashboard = ({navigation}) => {
   }, []);
 
   return (
-    <ScrollView>
-      {/* <Header heading="" navigation={navigation} /> */}
-
+    <View>
       <View style={styles.searchBar}>
         <TextInput
           value={searchText}
@@ -66,22 +64,26 @@ const Dashboard = ({navigation}) => {
           />
         </TouchableOpacity>
       </View>
-      {searched ? (
-        <>
-          <ProductGrid navigation={navigation} searchText={searchText} />
-        </>
-      ) : (
-        <>
-          <Text style={styles.heading}>Explore</Text>
-          {/* <Categories /> */}
-          <ProductCarousel navigation={navigation} />
-          <Text style={styles.heading}>Popular Products</Text>
-          <ProductSlider navigation={navigation} />
-          <Text style={styles.heading}>Top Picks For You</Text>
-          <ProductSlider navigation={navigation} />
-        </>
-      )}
-    </ScrollView>
+      <ScrollView style={{paddingTop: 70}}>
+        {/* <Header heading="" navigation={navigation} /> */}
+
+        {searched ? (
+          <>
+            <ProductGrid navigation={navigation} searchText={searchText} />
+          </>
+        ) : (
+          <>
+            <Text style={styles.heading}>Explore</Text>
+            {/* <Categories /> */}
+            <ProductCarousel navigation={navigation} />
+            <Text style={styles.heading}>Popular Products</Text>
+            <ProductSlider navigation={navigation} />
+            <Text style={styles.heading}>Top Picks For You</Text>
+            <ProductSlider navigation={navigation} />
+          </>
+        )}
+      </ScrollView>
+    </View>
   );
 };
 

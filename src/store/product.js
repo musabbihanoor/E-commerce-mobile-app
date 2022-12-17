@@ -12,7 +12,7 @@ import {wishlist} from '../data/wishlist';
 
 class Product {
   state = {
-    allProducts: [],
+    allProducts: products,
     searchedProducts: [],
     products: [],
     product: {},
@@ -70,9 +70,13 @@ class Product {
   };
 
   getProductsByCategories = async id => {
-    this.state.products = this.shuffle(
-      this.state.allProducts.filter(x => x.category === id),
-    );
+    if (id === null) {
+      this.state.searchedProducts = this.shuffle(this.state.allProducts);
+    } else {
+      this.state.searchedProducts = this.shuffle(
+        this.state.allProducts.filter(x => x.category === id),
+      );
+    }
   };
 
   getSearchedProducts = text => {

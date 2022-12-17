@@ -5,23 +5,28 @@ import {ProductStore} from '../store/product';
 import styles from '../styles';
 import {observer} from 'mobx-react';
 
-export const ProductGrid = observer(({searchText, navigation}) => {
+export const ProductGrid = observer(({searchText, navigation, byCategory}) => {
   const {
-    state: {searchedProducts},
+    state: {searchedProducts, category},
     setProduct,
     getSearchedProducts,
+    getProductsByCategories,
   } = ProductStore;
 
   useEffect(() => {
-    getSearchedProducts(searchText);
-  }, []);
+    byCategory
+      ? getProductsByCategories(category)
+      : getSearchedProducts(searchText);
+  }, [category]);
 
   return (
     <View>
-      <Text style={styles.searchText}>
-        {searchedProducts.length === 0 && 'no'} search results for "{searchText}
-        "
-      </Text>
+      {!byCategory && (
+        <Text style={styles.searchText}>
+          {searchedProducts.length === 0 && 'no'} search results for "
+          {searchText}"
+        </Text>
+      )}
       <View style={styles.productGrid}>
         {searchedProducts.map((x, i) => (
           <Pressable

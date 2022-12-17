@@ -9,6 +9,8 @@ import {Wishlist} from '../screens/Wishlist';
 import Tutorial from '../screens/Onboarding';
 import {Header} from '../components/Header';
 import Menu from '../components/Menu';
+import SideMenu from '@chakrahq/react-native-side-menu';
+import {Category} from '../screens/Category';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome, faUser, faHeart} from '@fortawesome/free-solid-svg-icons';
@@ -26,8 +28,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import SideMenu from '@chakrahq/react-native-side-menu';
-
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const HomeStack = createStackNavigator();
@@ -42,10 +42,11 @@ const HomeTabs = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Dashboard">
+      initialRouteName="Category">
       <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="Product" component={Product} />
       <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Category" component={Category} />
     </HomeStack.Navigator>
   );
 };
@@ -65,7 +66,7 @@ const CartTabs = () => {
 };
 
 const Tabs = () => {
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <SideMenu menu={menu} isOpen={openMenu}>
@@ -78,6 +79,16 @@ const Tabs = () => {
           name="Home"
           component={HomeTabs}
           options={{
+            tabBarLabel: ({focused, color, size}) => (
+              <Text
+                style={{
+                  color: '#000',
+                  fontFamily: 'Poppins-Regular',
+                  fontSize: 10,
+                }}>
+                Home
+              </Text>
+            ),
             tabBarIcon: ({focused}) => (
               <>
                 {focused ? (
@@ -96,6 +107,16 @@ const Tabs = () => {
           name="Wishlist"
           component={CartTabs}
           options={{
+            tabBarLabel: ({focused, color, size}) => (
+              <Text
+                style={{
+                  color: '#000',
+                  fontFamily: 'Poppins-Regular',
+                  fontSize: 10,
+                }}>
+                Wishlist
+              </Text>
+            ),
             tabBarIcon: ({focused}) => (
               <FontAwesomeIcon icon={focused ? faHeart : faHeartEmpty} />
             ),
@@ -105,6 +126,16 @@ const Tabs = () => {
           name="Profile"
           component={Cart}
           options={{
+            tabBarLabel: ({focused, color, size}) => (
+              <Text
+                style={{
+                  color: '#000',
+                  fontFamily: 'Poppins-Regular',
+                  fontSize: 10,
+                }}>
+                Profile
+              </Text>
+            ),
             tabBarIcon: ({focused}) => (
               <FontAwesomeIcon icon={focused ? faUser : faUserEmpty} />
             ),
