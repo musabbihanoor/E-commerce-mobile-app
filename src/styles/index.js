@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    paddingHorizontal: 30,
+    backgroundColor: '#fff',
   },
 
   heading: {
@@ -20,11 +20,36 @@ const styles = StyleSheet.create({
 
   form: {
     width: '100%',
+    backgroundColor: '#eee',
+    padding: 20,
+    flex: 1,
   },
 
   label: {
     fontSize: 16,
     marginVertical: 5,
+  },
+
+  inputView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: '#fff',
+    borderWidth: 1,
+    marginBottom: 10,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    paddingLeft: 10,
+  },
+
+  inputViewFocused: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: PrimaryColor,
+    borderWidth: 1,
+    marginBottom: 10,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    paddingLeft: 10,
   },
 
   input: {
@@ -193,7 +218,7 @@ const styles = StyleSheet.create({
   },
 
   primaryBtn: {
-    backgroundColor: '#000',
+    backgroundColor: PrimaryColor,
     padding: 15,
     width: 200,
     alignItems: 'center',

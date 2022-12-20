@@ -9,7 +9,15 @@ const Tutorial = ({navigation}) => {
       onDone={() => navigation.navigate('login')}
       pages={[
         {
-          backgroundColor: '#fff',
+          backgroundColor: '#DBC5F7',
+          titleStyles: {
+            fontFamily: 'Poppins-SemiBold',
+            color: '#fff',
+          },
+          subTitleStyles: {
+            fontFamily: 'Poppins-Regular',
+            color: '#fff',
+          },
           image: (
             <Image source={require('../../assets/icons/add_your_info.png')} />
           ),
@@ -18,7 +26,15 @@ const Tutorial = ({navigation}) => {
             'Et adipisicing do enim duis amet id culpa. Commodo adipisicing.',
         },
         {
-          backgroundColor: '#fff',
+          backgroundColor: '#DBC5F7',
+          titleStyles: {
+            fontFamily: 'Poppins-SemiBold',
+            color: '#fff',
+          },
+          subTitleStyles: {
+            fontFamily: 'Poppins-Regular',
+            color: '#fff',
+          },
           image: (
             <Image source={require('../../assets/icons/add_to_cart.png')} />
           ),
@@ -27,7 +43,15 @@ const Tutorial = ({navigation}) => {
             'Ipsum officia eu amet Lorem amet pariatur culpa reprehenderit esse irure.',
         },
         {
-          backgroundColor: '#fff',
+          backgroundColor: '#DBC5F7',
+          titleStyles: {
+            fontFamily: 'Poppins-SemiBold',
+            color: '#fff',
+          },
+          subTitleStyles: {
+            fontFamily: 'Poppins-Regular',
+            color: '#fff',
+          },
           image: <Image source={require('../../assets/icons/payment.png')} />,
           title: 'Payment',
           subtitle:

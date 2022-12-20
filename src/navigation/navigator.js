@@ -87,11 +87,8 @@ const ProfileTabs = () => {
 };
 
 const Tabs = ({navigation}) => {
-  const [openMenu, setOpenMenu] = useState(false);
-
   return (
-    <SideMenu menu={menu} isOpen={openMenu} autoClosing={true}>
-      <Header setOpenMenu={setOpenMenu} />
+    <>
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
@@ -163,27 +160,49 @@ const Tabs = ({navigation}) => {
           }}
         />
       </Tab.Navigator>
-    </SideMenu>
+    </>
   );
 };
 
 export const Navigator = observer(() => {
+  const [openMenu, setOpenMenu] = useState(false);
+
   const {
     state: {isAuthenticated},
   } = AuthStore;
 
   return (
-    <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName="Main">
-        <Stack.Screen name="Onboarding" component={Tutorial} />
-        <Stack.Screen name="Main" component={Tabs} />
-        <Stack.Screen name="signup" component={Signup} />
-        <Stack.Screen name="login" component={Login} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      {isAuthenticated ? (
+        <>
+          <SideMenu menu={menu} isOpen={openMenu} autoClosing={true}>
+            <Header setOpenMenu={setOpenMenu} navigationRef={navigationRef} />
+            <NavigationContainer ref={navigationRef}>
+              <Stack.Navigator
+                screenOptions={{
+                  headerShown: false,
+                }}
+                initialRouteName="Main">
+                <Stack.Screen name="Main" component={() => <Tabs />} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </SideMenu>
+        </>
+      ) : (
+        <>
+          <NavigationContainer ref={navigationRef}>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}
+              initialRouteName="Onboarding">
+              <Stack.Screen name="Onboarding" component={Tutorial} />
+              <Stack.Screen name="signup" component={Signup} />
+              <Stack.Screen name="login" component={Login} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </>
+      )}
+    </>
   );
 });

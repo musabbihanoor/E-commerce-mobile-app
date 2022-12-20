@@ -15,6 +15,8 @@ import {
 import Svg, {Path} from 'react-native-svg';
 
 const Menu = ({navigationRef}) => {
+  console.log(navigationRef.current?.getCurrentRoute());
+
   return (
     <View style={styles.menu}>
       <View style={styles.menuTop}>

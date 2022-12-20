@@ -8,14 +8,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 const Input = ({placeholder, text, setText, password, icon}) => {
   const [focused, setFocused] = useState(false);
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderBottomColor: '#000',
-        borderBottomWidth: 1,
-        marginBottom: 10,
-      }}>
+    <View style={focused ? styles.inputViewFocused : styles.inputView}>
       {icon && <FontAwesomeIcon icon={icon} />}
       <TextInput
         secureTextEntry={password ? true : false}

@@ -10,7 +10,7 @@ import {AuthStore} from '../store/auth';
 import {ProductStore} from '../store/product';
 import {observer} from 'mobx-react';
 
-export const Header = observer(({navigation, hideCart, setOpenMenu}) => {
+export const Header = observer(({navigationRef, hideCart, setOpenMenu}) => {
   const {
     state: {cart},
   } = ProductStore;
@@ -39,7 +39,7 @@ export const Header = observer(({navigation, hideCart, setOpenMenu}) => {
 
       {!hideCart && (
         <Pressable
-          onPress={() => navigation.navigate('Cart')}
+          onPress={() => navigationRef.navigate('Cart')}
           style={{
             flexDirection: 'row',
             width: 20,
