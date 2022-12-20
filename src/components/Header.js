@@ -48,7 +48,7 @@ export const Header = observer(({navigation, hideCart, setOpenMenu}) => {
           }}>
           <Image
             style={{width: 20, height: 20}}
-            source={require('../assets/icons/bag.png')}
+            source={require('../../assets/icons/bag.png')}
           />
           {cart.length > 0 && (
             <Text

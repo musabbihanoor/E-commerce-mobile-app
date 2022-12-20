@@ -11,7 +11,7 @@ const Tutorial = ({navigation}) => {
         {
           backgroundColor: '#fff',
           image: (
-            <Image source={require('../assets/icons/add_your_info.png')} />
+            <Image source={require('../../assets/icons/add_your_info.png')} />
           ),
           title: 'Create an account',
           subtitle:
@@ -19,14 +19,16 @@ const Tutorial = ({navigation}) => {
         },
         {
           backgroundColor: '#fff',
-          image: <Image source={require('../assets/icons/add_to_cart.png')} />,
+          image: (
+            <Image source={require('../../assets/icons/add_to_cart.png')} />
+          ),
           title: 'Add to Cart',
           subtitle:
             'Ipsum officia eu amet Lorem amet pariatur culpa reprehenderit esse irure.',
         },
         {
           backgroundColor: '#fff',
-          image: <Image source={require('../assets/icons/payment.png')} />,
+          image: <Image source={require('../../assets/icons/payment.png')} />,
           title: 'Payment',
           subtitle:
             'Nisi eiusmod officia amet veniam veniam ex laborum duis sit commodo.',

@@ -43,7 +43,7 @@ export const Wishlist = observer(({navigation}) => {
               alignSelf: 'center',
               marginBottom: 20,
             }}
-            source={require('../assets/icons/out-of-stock.png')}
+            source={require('../../assets/icons/out-of-stock.png')}
           />
           <Text
             style={{

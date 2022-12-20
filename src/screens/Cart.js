@@ -53,7 +53,7 @@ export const Cart = observer(({navigation}) => {
               alignSelf: 'center',
               marginBottom: 20,
             }}
-            source={require('../assets/icons/empty-cart.png')}
+            source={require('../../assets/icons/empty-cart.png')}
           />
           <Text
             style={{

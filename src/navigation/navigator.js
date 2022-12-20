@@ -100,7 +100,7 @@ const Tabs = ({navigation}) => {
                 ) : (
                   <Image
                     style={{width: 20, height: 20}}
-                    source={require('../assets/icons/home.png')}
+                    source={require('../../assets/icons/home.png')}
                   />
                 )}
               </>
