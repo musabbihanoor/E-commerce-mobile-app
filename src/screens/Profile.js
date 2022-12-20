@@ -60,7 +60,7 @@ const Profile = ({navigation}) => {
           style={styles.menuOption}
           onPress={() => navigation.navigate('Category')}>
           <FontAwesomeIcon color="#ccc" icon={faReceipt} />
-          <Text style={styles.menuText}>Order History</Text>
+          <Text style={styles.menuText}>Orders</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
         </Pressable>
 
