@@ -29,8 +29,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNavigationContainerRef} from '@react-navigation/native';
 import Profile from '../screens/Profile';
-import OrderHistory from '../screens/OrderHistory';
-import OldOrder from '../screens/OldOrder';
+import Orders from '../screens/Orders';
+import Order from '../screens/Order';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -80,8 +80,8 @@ const ProfileTabs = () => {
       }}
       initialRouteName="Wishlist">
       <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="OldOrder" component={OldOrder} />
-      <Stack.Screen name="OrderHistory" component={OrderHistory} />
+      <Stack.Screen name="Order" component={Order} />
+      <Stack.Screen name="Orders" component={Orders} />
     </CartStack.Navigator>
   );
 };
@@ -183,7 +183,6 @@ export const Navigator = observer(() => {
         <Stack.Screen name="Main" component={Tabs} />
         <Stack.Screen name="signup" component={Signup} />
         <Stack.Screen name="login" component={Login} />
-        <Stack.Screen name="Product" component={Product} />
       </Stack.Navigator>
     </NavigationContainer>
   );

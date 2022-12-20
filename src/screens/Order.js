@@ -7,7 +7,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
-const OldOrder = () => {
+const Order = () => {
   return (
     <ScrollView style={{flex: 1}}>
       <View style={{padding: 10, backgroundColor: '#fff'}}>
@@ -282,4 +282,4 @@ const OldOrder = () => {
   );
 };
 
-export default OldOrder;
+export default Order;

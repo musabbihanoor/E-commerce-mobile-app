@@ -1,4 +1,4 @@
-import {View, Text, Pressable} from 'react-native';
+import {View, Text, Pressable, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styles from '../styles';
 
@@ -35,45 +35,45 @@ const Menu = ({navigationRef}) => {
       </View>
 
       <View style={styles.menuOptions}>
-        <Pressable
+        <TouchableOpacity
           style={styles.menuOption}
           onPress={() => navigationRef.navigate('Dashboard')}>
           <FontAwesomeIcon icon={faHome} />
           <Text style={styles.menuText}>Home</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={styles.menuOption}
           onPress={() => navigationRef.navigate('Wishlist')}>
           <FontAwesomeIcon icon={faHeart} />
           <Text style={styles.menuText}>Wishlist</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={styles.menuOption}
           onPress={() => navigationRef.navigate('Cart')}>
           <FontAwesomeIcon icon={faCartShopping} />
           <Text style={styles.menuText}>Cart</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={styles.menuOption}
           onPress={() => navigationRef.navigate('Category')}>
           <FontAwesomeIcon icon={faBoxes} />
           <Text style={styles.menuText}>Categories</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={styles.menuOption}
-          onPress={() => navigationRef.navigate('Dashboard')}>
+          onPress={() => navigationRef.navigate('Orders')}>
           <FontAwesomeIcon icon={faCheckCircle} />
           <Text style={styles.menuText}>Orders</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );

@@ -4,7 +4,7 @@ import styles from '../styles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
 
-const OrderHistory = () => {
+const Orders = ({navigation}) => {
   const [selected, setSelected] = useState('ongoing');
 
   return (
@@ -40,7 +40,9 @@ const OrderHistory = () => {
         </Pressable>
       </View>
       <ScrollView style={{padding: 20}}>
-        <Pressable style={styles.orderItem}>
+        <Pressable
+          onPress={() => navigation.navigate('Order')}
+          style={styles.orderItem}>
           <View>
             <Text style={styles.orderNo}>Order Number. 111</Text>
             <Text style={styles.orderItemCount}>2 items</Text>
@@ -52,7 +54,9 @@ const OrderHistory = () => {
           </View>
         </Pressable>
 
-        <Pressable style={styles.orderItem}>
+        <Pressable
+          onPress={() => navigation.navigate('Order')}
+          style={styles.orderItem}>
           <View>
             <Text style={styles.orderNo}>Order Number. 111</Text>
             <Text style={styles.orderItemCount}>2 items</Text>
@@ -64,7 +68,9 @@ const OrderHistory = () => {
           </View>
         </Pressable>
 
-        <Pressable style={styles.orderItem}>
+        <Pressable
+          onPress={() => navigation.navigate('Order')}
+          style={styles.orderItem}>
           <View>
             <Text style={styles.orderNo}>Order Number. 111</Text>
             <Text style={styles.orderItemCount}>2 items</Text>
@@ -80,4 +86,4 @@ const OrderHistory = () => {
   );
 };
 
-export default OrderHistory;
+export default Orders;
