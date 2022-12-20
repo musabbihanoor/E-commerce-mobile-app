@@ -293,9 +293,21 @@ const styles = StyleSheet.create({
   },
 
   menuText: {
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins-SemiBold',
+    color: '#000',
     marginLeft: 10,
     flex: 1,
+  },
+
+  profile: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+
+  profileName: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 20,
+    color: '#000',
   },
 });
 

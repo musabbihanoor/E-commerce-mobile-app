@@ -28,6 +28,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNavigationContainerRef} from '@react-navigation/native';
+import Profile from '../screens/Profile';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -128,7 +129,7 @@ const Tabs = ({navigation}) => {
         />
         <Tab.Screen
           name="Profile"
-          component={Cart}
+          component={Profile}
           options={{
             tabBarLabel: ({focused, color, size}) => (
               <Text
