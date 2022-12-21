@@ -27,7 +27,7 @@ export const ProductGrid = observer(({searchText, navigation, byCategory}) => {
           {searchText}"
         </Text>
       )}
-      <View style={styles.productGrid}>
+      <ScrollView contentContainerStyle={styles.productGrid}>
         {searchedProducts.map((x, i) => (
           <Pressable
             onPress={() => {
@@ -41,7 +41,8 @@ export const ProductGrid = observer(({searchText, navigation, byCategory}) => {
             <Text style={styles.sliderPrice}>${x.price}</Text>
           </Pressable>
         ))}
-      </View>
+        <View style={{height: 350}}></View>
+      </ScrollView>
     </View>
   );
 });

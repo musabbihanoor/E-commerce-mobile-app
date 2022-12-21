@@ -32,41 +32,31 @@ const Profile = ({navigation}) => {
       </View>
 
       <View style={styles.menuOptions}>
-        <Pressable
-          style={styles.menuOption}
-          onPress={() => navigation.navigate('Dashboard')}>
+        <Pressable style={styles.menuOption}>
           <FontAwesomeIcon color="#ccc" icon={faUser} />
           <Text style={styles.menuText}>Edit Profile</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
         </Pressable>
 
-        <Pressable
-          style={styles.menuOption}
-          onPress={() => navigation.navigate('Wishlist')}>
+        <Pressable style={styles.menuOption}>
           <FontAwesomeIcon color="#ccc" icon={faLocationPin} />
           <Text style={styles.menuText}>Shopping Address</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
         </Pressable>
 
-        <Pressable
-          style={styles.menuOption}
-          onPress={() => navigation.navigate('Cart')}>
+        <Pressable style={styles.menuOption}>
           <FontAwesomeIcon color="#ccc" icon={faHeart} />
           <Text style={styles.menuText}>Wishlist</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
         </Pressable>
 
-        <Pressable
-          style={styles.menuOption}
-          onPress={() => navigation.navigate('Category')}>
+        <Pressable style={styles.menuOption}>
           <FontAwesomeIcon color="#ccc" icon={faReceipt} />
           <Text style={styles.menuText}>Orders</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />
         </Pressable>
 
-        <Pressable
-          style={styles.menuOption}
-          onPress={() => navigation.navigate('Dashboard')}>
+        <Pressable style={styles.menuOption}>
           <FontAwesomeIcon color="#ccc" icon={faCreditCard} />
           <Text style={styles.menuText}>Cards</Text>
           <FontAwesomeIcon color="#ccc" icon={faChevronRight} />

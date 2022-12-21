@@ -6,7 +6,10 @@ import {ProductGrid} from '../components/ProductGrid';
 export const Category = ({navigation}) => {
   return (
     <View>
-      <Categories />
+      <View>
+        <Categories />
+      </View>
+
       <ProductGrid byCategory={true} navigation={navigation} />
     </View>
   );

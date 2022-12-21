@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   ToastAndroid,
+  ScrollView,
 } from 'react-native';
 import Input from '../components/Input';
 import styles from '../styles';
@@ -34,7 +35,7 @@ const Login = ({navigation}) => {
         />
       </View>
 
-      <View style={styles.form}>
+      <ScrollView style={styles.form}>
         <Text
           style={{
             textAlign: 'center',
@@ -77,7 +78,7 @@ const Login = ({navigation}) => {
         <TouchableOpacity style={styles.primaryBtn} onPress={() => onSubmit()}>
           <Text style={{...styles.btnTextPrimary, color: '#fff'}}>Submit</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     </View>
   );
 };

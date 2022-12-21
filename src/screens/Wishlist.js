@@ -81,8 +81,8 @@ export const Wishlist = observer(({navigation}) => {
   );
 });
 
-const Item = ({product}) => {
-  const {removeFromWishlist, addToCart} = ProductStore;
+const Item = ({product, navigation}) => {
+  const {removeFromWishlist, addToCart, setProduct} = ProductStore;
 
   return (
     <View style={styles.wishlistItem}>

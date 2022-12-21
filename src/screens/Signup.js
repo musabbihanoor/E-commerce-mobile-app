@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import Input from '../components/Input';
 
@@ -35,7 +36,7 @@ const Signup = ({navigation}) => {
         style={{width: 200, height: 200}}
         source={require('../../assets/icons/Login.jpg')}
       />
-      <View style={{...styles.form}}>
+      <ScrollView style={{...styles.form}}>
         <Text
           style={{
             textAlign: 'center',
@@ -89,7 +90,7 @@ const Signup = ({navigation}) => {
           }}>
           <Text style={{color: '#fff'}}>Submit</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     </View>
   );
 };

@@ -36,6 +36,7 @@
     "react-native-screens": "^3.18.2",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-snap-carousel-v4": "^1.0.1",
+    "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "^13.6.0"
   },
   "devDependencies": {

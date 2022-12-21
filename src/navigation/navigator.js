@@ -183,7 +183,7 @@ export const Navigator = observer(() => {
                   headerShown: false,
                 }}
                 initialRouteName="Main">
-                <Stack.Screen name="Main" component={() => <Tabs />} />
+                <Stack.Screen name="Main" component={Tabs} />
               </Stack.Navigator>
             </NavigationContainer>
           </SideMenu>

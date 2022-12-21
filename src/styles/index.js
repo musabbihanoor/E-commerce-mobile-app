@@ -106,8 +106,9 @@ const styles = StyleSheet.create({
 
   category: {
     paddingVertical: 5,
-    marginHorizontal: 5,
+    marginHorizontal: 3,
     borderRadius: 5,
+    backgroundColor: '#eee',
   },
 
   categoryText: {
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#fff',
     fontFamily: 'Poppins-SemiBold',
-    backgroundColor: '#ccc',
+    backgroundColor: PrimaryColor,
     paddingHorizontal: 20,
     borderRadius: 5,
   },

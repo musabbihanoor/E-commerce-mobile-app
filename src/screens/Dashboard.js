@@ -80,6 +80,7 @@ const Dashboard = ({navigation}) => {
             <ProductSlider navigation={navigation} />
             <Text style={styles.heading}>Top Picks For You</Text>
             <ProductSlider navigation={navigation} />
+            <View style={{height: 100}}></View>
           </>
         )}
       </ScrollView>
