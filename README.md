@@ -1,6 +1,6 @@
 # React-Native-Ecommerce
 
-A boilerplate for a ecommerce mobile app using React Native.
+A template for a ecommerce mobile app using React Native.
 
 ## Features
 
@@ -18,13 +18,11 @@ A boilerplate for a ecommerce mobile app using React Native.
 - Order History
 - Wish List
 
-## ❤️ Support us
-
-- `Donate (Eth) : 021A827e911350a7133ac494F3D7D2281e0B75F9`
-
 ## Screens Recording
 
 ![Video](/assets/gif/video_.gif?raw=true 'Run time Video')
+
+[Download APK from here](https://drive.google.com/file/d/1e4QVQh6rA-vsKTGbpctyPtboodnaAbYp/view?usp=sharing)
 
 ## Requirements
 
@@ -46,20 +44,25 @@ See [Getting Started](https://facebook.github.io/react-native/docs/getting-start
 
 ## Libraries
 
-- [@react-native-community/masked-view](https://github.com/react-native-community/react-native-masked-view) `0.1.10`
-- [@react-navigation/native](https://github.com/react-navigation/react-navigation) `5.7.3`
-- [@react-navigation/stack](https://github.com/react-navigation/react-navigation) `5.9.0`
-- [Bottom-Tabs](https://github.com/react-navigation/react-navigation) `5.11.11`
-- [react-native-gesture-handler](https://github.com/software-mansion/react-native-gesture-handler) `1.7.0`
-- [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated) `1.13.0`
-- [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) `3.1.7`
-- [react-native-screens](https://github.com/software-mansion/react-native-screens) `2.10.1`
-- [react-redux](https://react-redux.js.org/) `7.2.1`
-- [redux](https://redux.js.org/) `4.0.5`
-- [redux-saga](https://redux-saga.js.org/) `1.1.3`
-- [Alert](https://github.com/testshallpass/react-native-dropdownalert) `4.3.0`
-- [Redux-persist](https://github.com/rt2zz/redux-persist) `6.0.0`
-- [Touch-ripple](https://github.com/noddy1996/react-native-touch-ripple) `0.0.0`
+- [@chakrahq/react-native-side-menu](https://github.com/react-native-community/react-native-side-menu) `1.3.4`
+- [@fortawesome/fontawesome-svg-core](https://www.npmjs.com/package/@fortawesome/react-native-fontawesome) `6.2.1`
+- [@fortawesome/free-regular-svg-icons](https://www.npmjs.com/package/@fortawesome/react-native-fontawesome) `6.2.1`
+- [@fortawesome/free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/react-native-fontawesome) `6.2.1`
+- [@fortawesome/react-native-fontawesome](https://www.npmjs.com/package/@fortawesome/react-native-fontawesome) `0.3.0`
+- [@react-navigation/bottom-tabs](https://reactnavigation.org/docs/bottom-tab-navigator/) `6.5.1`
+- [@react-navigation/native](https://reactnavigation.org/docs/getting-started) `6.1.0`
+- [@react-navigation/stack](https://reactnavigation.org/docs/native-stack-navigator) `6.3.8`
+- [mobx](https://www.npmjs.com/package/mobx) `6.7.0`
+- [mobx-react](https://www.npmjs.com/package/mobx-react) `7.6.0`
+- [react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler) `2.8.0`
+- [react-native-onboarding-swiper](https://www.npmjs.com/package/react-native-onboarding-swiper) `1.2.0`
+- [react-native-reanimated](https://www.npmjs.com/package/react-native-reanimated) `2.13.0`
+- [react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context) `4.4.1`
+- [react-native-screens](https://www.npmjs.com/package/react-native-screens) `3.18.2`
+- [react-native-snap-carousel-v4](https://www.npmjs.com/package/react-native-snap-carousel-v4) `1.0.1`
+- [react-native-splash-screen](https://www.npmjs.com/package/react-native-splash-screen) `3.3.0`
+- [react-native-svg](https://www.npmjs.com/package/react-native-svg) `13.6.0`
+
 
 ## Get Started
 
@@ -68,32 +71,13 @@ See [Getting Started](https://facebook.github.io/react-native/docs/getting-start
 On the command prompt run the following commands
 
 ```sh
-$ git clone https://github.com/eramudeep/react-native-ecommerce.git
+$ git clone https://github.com/musabbihanoor/E-commerce-mobile-app.git
 
-$ cd react-native-redux-starter/
+$ cd E-commerce-mobile-app/
 
 $ npm install
 ```
 
-#### 2. Simulate for iOS
-
-```sh
-$ cd ios && pod install
-```
-
-**Method One**
-
-- Open the project in Xcode from **ios/react_native_redux_starter.xcodeproj**.
-
-- Hit the play button.
-
-**Method Two**
-
-- Run the following command in your terminal.
-
-```sh
-$ react-native run-ios
-```
 
 #### 3. Simulate for Android
 
@@ -104,16 +88,6 @@ $ react-native run-ios
 ```sh
 $ react-native run-android
 ```
-
-#### 4. How to Decide the Navigation
-
-- Navigation is decided By **navigationTypeTabs** Key definend in [app.json](./app.json).
-- **navigationTypeTabs** : true, will give you the bottom Tabs and vice versa.
-
-## Debugger
-
-- [React Native Debugger](https://github.com/jhen0409/react-native-debugger) : The standalone app based on official debugger of React Native, and includes React Inspector / Redux DevTools
-- [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension) `2.13.5`
 
 ## Rename Project
 
@@ -154,11 +128,11 @@ react-native-rename <newName> -b <bundleIdentifier>
 #### Example
 
 ```
-react-native-rename "Travel App"
+react-native-rename "Shopping App"
 ```
 
 > With custom Bundle Identifier
 
 ```
-react-native-rename "Travel App" -b com.junedomingo.travelapp
+react-native-rename "Shopping App" -b com.junedomingo.shoppingapp
 ```
