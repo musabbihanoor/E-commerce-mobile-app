@@ -1,6 +1,8 @@
 # React-Native-Ecommerce
 A boilerplate for a ecommerce mobile app using React Native.
 ## Features
+- Splash Screen 
+- Onboarding Screens
 - Login 
 - Signup
 - Cart
