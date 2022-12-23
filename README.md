@@ -22,8 +22,6 @@ A template for a ecommerce mobile app using React Native.
 
 ![Video](/assets/gif/video_.gif?raw=true 'Run time Video')
 
-[Download APK from here](https://drive.google.com/file/d/1e4QVQh6rA-vsKTGbpctyPtboodnaAbYp/view?usp=sharing)
-
 ## Requirements
 
 - [Node](https://nodejs.org) `6.x` or newer
